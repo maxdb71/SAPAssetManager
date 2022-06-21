@@ -1,0 +1,14 @@
+{
+	"PopoverItems":
+	[{
+		"Title": "$(L,add_workorder)",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderCreate.js",
+		"OnPress": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/WorkOrderCreateNav.js"
+	},
+	{
+		"Title": "$(L,workorders_assign)",
+		"Visible": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/IsSupervisorSectionVisibleForWO.js",
+		"OnPress": "/SAPAssetManager/Actions/Supervisor/Assign/WorkOrderAssignNav.action"
+	}],
+	"_Type": "Action.Type.PopoverMenu"
+}

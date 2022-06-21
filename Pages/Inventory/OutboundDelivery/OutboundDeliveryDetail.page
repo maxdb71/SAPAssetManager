@@ -1,0 +1,110 @@
+{
+	"Caption": "$(L,obd_detail_title)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"PreserveIconStackSpacing": false,
+						"Footnote": "/SAPAssetManager/Rules/Inventory/Common/GetDocumentDateForInventoryHeader.js",
+						"HeadlineText": "{DeliveryNum}",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/GetFormattedRecipientText.js",
+						"Tags": "SAPAssetManager/Rules/Inventory/OutboundDelivery/GetFormattedTags.js"
+					},
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Common/GetCount.js",
+						"Caption": "$(L,see_all)",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Actions/Inventory/OutboundDelivery/OutboundDeliveryItemsListNav.action",
+						"UseBottomPadding": true
+					},
+					"Header": {
+						"Caption": "$(L,items)",
+						"UseTopPadding": true
+					},
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png)",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundDeliveryQuantity.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/SetGoodsReceiptOutboundDelivery.js",
+						"PreserveIconStackSpacing": false,
+						"StatusText": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/GetInboundOrOutboundItemState.js",
+						"Subhead": "{Material}",
+						"Title": "/SAPAssetManager/Rules/Common/GetMaterialName.js"
+					},
+					"Target": {
+						"EntitySet": "OutboundDeliveryItems",
+						"QueryOptions": "$filter=DeliveryNum eq '{{#Property:DeliveryNum}}'&$expand=OutboundDeliverySerial_Nav,MaterialPlant_Nav,OutboundDelivery_Nav&$orderby=Item",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_related_document)"
+					},
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Common/GetCount.js",
+						"Caption": "$(L,see_all)",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Actions/Inventory/MaterialDocument/MaterialDocumentListNav.action",
+						"UseBottomPadding": true
+					},
+					"Header": {
+						"Caption": "$(L,related_material_documents)",
+						"UseTopPadding": true
+					},
+					"MaxItemCount": 5,
+					"ObjectCell": {
+						"AccessoryType": "disclosureIndicator",
+						"DetailImageIsCircular": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentNavRule.js",
+						"PreserveIconStackSpacing": false,
+						"Subhead": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentCreatedOn.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentCreatedBy.js",
+						"Title": "{MaterialDocNumber}"
+					},
+					"Target": {
+						"EntitySet": "MaterialDocuments",
+						"QueryOptions": "/SAPAssetManager/Rules/Inventory/InboundDelivery/GetRelatedMaterialDocsFilter.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable3",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"ToolBar": {
+        "Controls": [
+            {
+                "_Name": "FlexibleSpaceLeftTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "SystemItem": "FlexibleSpace"
+            },
+            {
+                "_Name": "IssuePartTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "Enabled" : true,
+                "Caption": "$(L,issue_all)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/OutboundDelivery/SetGoodsReceiptOutboundDeliveryWithItems.js"
+            },
+            {
+                "_Name": "FlexibleSpaceRightTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "SystemItem": "FlexibleSpace"
+            }
+        ]
+    },
+	"_Name": "OutboundDeliveryDetail",
+	"_Type": "Page"
+}

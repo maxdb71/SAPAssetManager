@@ -1,0 +1,57 @@
+{
+	"Caption": "(L,notification_activities)",
+	"OnLoaded": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsActivitiesListOnLoad.js",
+	"OnReturning": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsActivitiesListOnReturn.js",
+
+	"ActionBar":
+	{
+		"Items":
+		[{
+			"Position": "right",
+			"SystemItem": "Add",
+			"OnPress": "/SAPAssetManager/Rules/Notifications/Activity/CreateUpdate/NotificationActivityCreateNav.js",
+			"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationEdit.js"
+
+		}]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+		 		"UseTopPadding": false
+    		},
+			"ObjectCell":
+			{	
+				"PreserveIconStackSpacing": true,
+				"Icons":"/SAPAssetManager/Rules/Notifications/Activity/NotificationActivityIconImages.js",
+				"AccessoryType": "disclosureIndicator",
+                "Title": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsActivityListFormat.js",
+                "Subhead": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsActivityListFormat.js",
+                "Footnote": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsActivityListFormat.js",
+				"OnPress": "/SAPAssetManager/Actions/Notifications/Activity/NotificationActivityDetailsNav.action"
+			},
+            "Target":
+			{
+                "EntitySet" : "{{#Property:@odata.id}}/Activities",
+                "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                "QueryOptions": "$expand=Notification&$orderby=ActivitySortNumber asc"
+            },
+			"_Name" : "NotificationActivities",
+			"_Type" : "Section.Type.ObjectTable"
+		}],
+		"_Type" : "Control.Type.SectionedTable"
+	}],
+	"_Type": "Page",
+	"_Name": "NotificationActivitiesListViewPage",
+	"DataSubscriptions": ["MyNotificationActivities"]
+
+}

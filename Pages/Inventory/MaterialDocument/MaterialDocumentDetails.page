@@ -1,0 +1,86 @@
+{
+	"Caption": "$(L,material_document_title)",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "right",
+                "SystemItem": "Edit",
+                "Visible": "/SAPAssetManager/Rules/Inventory/MaterialDocument/EnableMaterialDocumentEditable.js",
+                "OnPress": "/SAPAssetManager/Actions/Inventory/MaterialDocument/MaterialDocumentUpdateNav.action"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"BodyText": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentCreatedOn.js",
+						"DetailImageIsCircular": false,
+						"Subhead": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentCreatedBy.js",
+						"HeadlineText": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentNumber.js",
+						"Tags": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentTags.js",
+						"PreserveIconStackSpacing": false
+					},
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_items)"
+					},
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Common/GetCount.js",
+						"Caption": "$(L,see_all)",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Actions/Inventory/MaterialDocument/MaterialDocumentItemListNav.action",
+						"UseBottomPadding": true
+					},
+					"Header": {
+						"Caption": "$(L,items)",
+						"UseTopPadding": true
+					},
+					"MaxItemCount": 5,
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png)",
+						"DetailImageIsCircular": false,
+						"Footnote": "/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/GetEntryQuantity.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/MaterialDocument/SetMaterialDocumentGoodsReceipt.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialPlantSLoc.js",
+						"Title": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDescriptionFromMaterialSLoc.js",
+						"PreserveIconStackSpacing": false
+					},
+					"Target": {
+						"EntitySet": "MaterialDocItems",
+						"QueryOptions": "$filter=MaterialDocNumber eq '{{#Property:MaterialDocNumber}}'&$expand=AssociatedMaterialDoc,SerialNum,PurchaseOrderItem_Nav,StockTransportOrderItem_Nav,ReservationItem_Nav,PurchaseOrderItem_Nav/MaterialPlant_Nav,StockTransportOrderItem_Nav/MaterialPlant_Nav,ReservationItem_Nav/MaterialPlant_Nav,StockTransportOrderItem_Nav/StockTransportOrderHeader_Nav,ReservationItem_Nav/ReservationHeader_Nav&$orderby=MatDocItem",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable1",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"Header": {
+						"Caption": "$(L,header_text)",
+						"UseTopPadding": true
+					},
+					"ObjectCells": [
+						{
+							"ObjectCell": {
+								"AccessoryType": "disclosureIndicator",
+								"Title":"{HeaderText}",
+								"PreserveIconStackSpacing":false
+							}
+						}
+					],
+					"_Name": "SectionObjectTable2",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "MaterialDocumentDetails",
+	"_Type": "Page"
+}

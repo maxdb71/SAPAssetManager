@@ -1,0 +1,16 @@
+{
+    "PopoverItems": 
+    [{
+        "Title": "$(L,transfer)",
+        "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/Transfer/SetStockTransfer.js"
+    },
+    {
+        "Title": "$(L,issue)",
+        "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SetStockGoodsIssue.js"
+    },
+    {
+        "Title": "$(L,receipt)",
+        "OnPress": "/SAPAssetManager/Rules/Inventory/Stock/SetStockGoodsReceipt.js"
+    }],
+    "_Type": "Action.Type.PopoverMenu"
+}

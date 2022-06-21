@@ -1,0 +1,13 @@
+{
+    "Actions":
+    [
+        "/SAPAssetManager/Actions/Equipment/Installation/EquipmentInstallation.action",
+        "/SAPAssetManager/Actions/Equipment/Installation/SetInstall.action"
+    ],
+    "Target":
+    {
+        "Service": "/SAPAssetManager/Services/AssetManager.service"
+    },
+    "ShowActivityIndicator": true,
+    "_Type": "Action.Type.ODataService.ChangeSet"
+}

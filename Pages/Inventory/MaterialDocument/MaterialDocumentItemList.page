@@ -1,0 +1,38 @@
+{
+	"Caption": "$(L,material_document_items_title)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Search": {
+						"BarcodeScanner": true,
+						"Enabled": true,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)"
+					},
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png)",
+						"DetailImageIsCircular": false,
+						"Footnote": "/SAPAssetManager/Rules/Inventory/MaterialDocumentItem/GetEntryQuantity.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/MaterialDocument/SetMaterialDocumentGoodsReceipt.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialPlantSLoc.js",
+						"Title": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDescriptionFromMaterialSLoc.js"
+					},
+					"Target": {
+						"EntitySet": "MaterialDocItems",
+						"QueryOptions": "$filter=MaterialDocNumber eq '{{#Property:MaterialDocNumber}}'&$expand=AssociatedMaterialDoc,SerialNum,PurchaseOrderItem_Nav,StockTransportOrderItem_Nav,ReservationItem_Nav,PurchaseOrderItem_Nav/MaterialPlant_Nav,StockTransportOrderItem_Nav/MaterialPlant_Nav,ReservationItem_Nav/MaterialPlant_Nav,StockTransportOrderItem_Nav/StockTransportOrderHeader_Nav,ReservationItem_Nav/ReservationHeader_Nav&$orderby=MatDocItem",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable0",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"_Name": "MaterialDocumentItemList",
+	"OnLoaded": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/SetMaterialDocumentItemListTitle.js",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/IssueOrReceipt/SetMaterialDocumentItemListTitle.js",
+	"_Type": "Page"
+}

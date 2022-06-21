@@ -1,0 +1,4 @@
+{
+	"_Type": "Action.Type.ToastMessage",
+	"Message": "$(L,documents_list_updated_locally)"
+}

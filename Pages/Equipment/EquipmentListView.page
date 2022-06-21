@@ -1,0 +1,69 @@
+{
+	"Caption": "/SAPAssetManager/Rules/SideDrawer/SideDrawerEquipmentCount.js",
+	"_Type": "Page",
+	"_Name": "EquipmentListViewPage",
+	"OnLoaded": "/SAPAssetManager/Rules/Equipment/EquipmentListViewOnPageLoad.js",
+	"ActionBar":
+	{
+		"Items":
+		[
+		{
+				"Position": "right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/sync.png,/SAPAssetManager/Images/sync.android.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+		},
+		{
+			"Position": "right",
+			"Icon": "$(PLT,'','res://filter')",
+			"Text": "$(L,filter)",
+			"OnPress": "/SAPAssetManager/Actions/Equipment/EquipmentFilter.action"
+		}]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Search": {
+						"Enabled": "/SAPAssetManager/Rules/Equipment/EquipmentSearchEnabled.js",
+						"Delay": 500,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)",
+						"BarcodeScanner": true
+					},
+					"Header": {
+		 				"UseTopPadding": false
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_equipments_available)"
+					},
+					"ObjectCell": {
+						"PreserveIconStackSpacing": true,
+						"Icons": "/SAPAssetManager/Rules/Equipment/EquipmentListViewIconImages.js",
+						"Title": "{{#Property:EquipDesc}} - {{#Property:MaintPlant}}",
+						"Subhead": "/SAPAssetManager/Rules/Equipment/EquipmentListViewFormat.js",
+						"Footnote": "{EquipId}",
+						"AccessoryType": "disclosureIndicator",
+						"SubstatusText": "/SAPAssetManager/Rules/Equipment/EquipmentListViewFormat.js",
+						"OnPress": "/SAPAssetManager/Rules/Equipment/EquipmentDetailsNav.js",
+						"ContextMenu": {
+								"PerformFirstActionWithFullSwipe": true,
+								"Items":"/SAPAssetManager/Rules/ContextMenuTable.js",
+								"LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+								"TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+						}
+					},
+					"Target": {
+						"EntitySet": "/SAPAssetManager/Rules/Equipment/EquipmentEntitySet.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/Equipment/EquipmentQueryOptions.js"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"_Name" : "EquipmentListViewSection"
+				}
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable"
+		}
+	],
+	"DataSubscriptions": ["MyEquipDocuments"]
+}

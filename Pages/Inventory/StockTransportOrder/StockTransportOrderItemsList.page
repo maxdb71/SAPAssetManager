@@ -1,0 +1,42 @@
+{
+	"Caption": "$(L,items)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false
+					},
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png)",
+						"DetailImageIsCircular": false,
+						"Footnote": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsOpenQuantitiesText.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/SetSTOTransactionWrapper.js",
+						"PreserveIconStackSpacing": false,
+						"StatusText": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/GetDeliveryDate.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/GetStockItemState.js",
+						"Subhead": "{MaterialNum}",
+						"Title": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetMaterialName.js"
+					},
+					"Search": {
+						"BarcodeScanner": true,
+						"Enabled": true,
+						"Placeholder": "$(L,search)"
+					},
+					"Target": {
+						"EntitySet": "StockTransportOrderItems",
+						"QueryOptions": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/GetStockTransportOrderItemsListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+    "OnReturning": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/StockTransportOrderItemsListOnReturning.js",
+	"_Name": "StockTransportOrderItemsListPage",
+	"_Type": "Page"
+}

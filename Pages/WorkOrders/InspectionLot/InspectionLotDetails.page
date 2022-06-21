@@ -1,0 +1,147 @@
+{
+	"Caption": "$(L, checklist)",
+    "OnReturning": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotDetailsOnPageReturning.js",
+    "ActionBar": {
+        "Items": [
+            {
+            "Text": "$(L,record_results)",
+            "Position": "Right",
+            "Visible": "/SAPAssetManager/Rules/InspectionCharacteristics/Update/IsInspectionCharacteristicsUpdateAllowed.js",
+            "OnPress": "/SAPAssetManager/Actions/InspectionCharacteristics/Update/InspectionCharacteristicsUpdateNav.action"
+            }
+        ]
+	},
+	"Controls": [
+        {
+            "Sections": [
+                {
+                    "_Type": "Section.Type.KeyValue",
+                    "_Name": "InspectionLotDetailsSection",
+                    "Header": {
+                        "Caption": "$(L,details)"
+                    },
+                    "KeyAndValues": [
+                        {
+                            "KeyName": "$(L,ID)",
+                            "Value": "{InspectionLot}"
+                        },
+                        {
+                            "KeyName": "$(L,description)",
+                            "Value": "{InspectionLot_Nav/ShortDesc}"
+                        },
+                        {
+                            "KeyName": "$(L,usage)",
+                            "Value": "{InspectionLot_Nav/InspValuation_Nav/ShortText}"
+                        },
+                        {
+                            "KeyName": "$(L,status)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotStatus.js"
+                        },
+                        {
+                            "KeyName": "$(L,inspection_start_date)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionStartDate.js"
+                        },
+                        {
+                            "KeyName": "$(L,inspection_end_date)",
+                            "Value": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionEndDate.js"
+                        }
+                    ],
+                    "Target": {
+                        "EntitySet": "{@odata.readLink}",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$expand=InspectionLot_Nav, InspectionLot_Nav/InspValuation_Nav&$select=InspectionLot, InspectionLot_Nav/ShortDesc, InspectionLot_Nav/InspValuation_Nav/ShortText, InspectionLot_Nav/StartDate, InspectionLot_Nav/EndDate"
+                    }
+                },
+                {
+                    "Header": {
+                        "Caption": "$(L,equipment)"
+                    },
+                    "EmptySection": {
+                        "Caption": "$(L,no_equipment_available)"
+                    },
+                    "ObjectCell": {
+                        "AccessoryType": "disclosureIndicator",
+                        "Title": "{EquipDesc}",
+                        "OnPress": "/SAPAssetManager/Rules/Equipment/EquipmentDetailsNav.js",
+                        "PreserveIconStackSpacing": false,
+                        "Subhead": "{EquipId}"
+                    },
+                    "Target": {
+                        "EntitySet": "MyEquipments",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$orderby=EquipId&$top=2&$filter=EquipId eq '{{#Property:Equipment}}'"
+                    },
+                    "_Type": "Section.Type.ObjectTable"
+                },
+                {
+                    "Header": {
+                        "Grid": {
+                            "Items": [
+                                {
+                                    "Text": "$(L,characteristic)",
+                                    "Style": "GridTableHeaderText"
+                                },
+                                {
+                                    "Text": "$(L,value)",
+                                    "Style": "GridTableHeaderText"
+                                },
+                                {
+                                    "Text": "$(L,valuation)",
+                                    "Style": "GridTableHeaderText"
+                                },
+                                {
+                                    "Text": "$(L,notification)",
+                                    "Style": "GridTableHeaderText"
+                                }
+                            ]
+                        }
+                    },
+                    "Row": {
+                        "Items": [
+                            {
+                                "Text": "{ShortDesc}",
+                                "Style": "GridTableRowText",
+                                "BindTo": "headline"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/InspectionCharacteristics/CodeDescText.js",
+                                "Style": "GridTableRowText",
+                                "BindTo": "subheadline"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationShortText.js",
+                                "Style": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationStyle.js",
+                                "BindTo": "footnote"
+                            },
+                            {
+                                "Text": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotNotification.js",
+                                "Style": "GridTableRowText",
+                                "BindTo": "status"
+                            }
+                        ],
+                        "Layout": {
+                            "ColumnWidthPercentage": [
+                                0.25,
+                                0.25,
+                                0.25,
+                                0.25
+                            ]
+                        }
+                    },
+                    "Target": {
+                        "EntitySet": "InspectionCharacteristics",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$filter=InspectionLot eq '{{#Property:InspectionLot}}'&$expand=NotifItems_Nav,InspectionCode_Nav"
+                    },
+                    "_Name": "InspectionCharacteristicHistorySection",
+                    "_Type": "Section.Type.GridTable"
+                }
+            ],
+        "_Type": "Control.Type.SectionedTable",
+        "_Name": "SectionedTable"
+        }
+    ],
+  "_Type": "Page",
+  "_Name": "InspectionLotDetailsPage",
+  "DataSubscriptions": ["InspectionLots","EAMChecklistLinks","InspectionCharacteristics","InspectionCatalogValuations","InspectionCodes"]
+}

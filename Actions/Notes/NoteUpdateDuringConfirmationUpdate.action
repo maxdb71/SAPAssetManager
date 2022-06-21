@@ -1,0 +1,14 @@
+{
+    "_Type": "Action.Type.ODataService.UpdateEntity",
+    "Target": {
+        "EntitySet": "/SAPAssetManager/Rules/Notes/NoteGetEntitySet.js",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "#Property:LongText/#Property:@odata.readLink"        
+    },
+    "Properties": {     
+        "NewTextString": "#Control:DescriptionNote/#Value",
+        "TextString": "#Control:DescriptionNote/#Value"
+    },
+    "OnFailure": "/SAPAssetManager/Actions/Notes/NoteUpdateFailureMessage.action",
+    "UpdateLinks":  "/SAPAssetManager/Rules/Notes/NoteCreateLinks.js"
+}

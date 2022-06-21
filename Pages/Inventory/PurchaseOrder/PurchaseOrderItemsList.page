@@ -1,0 +1,43 @@
+{
+	"Caption": "$(L,items)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false
+					},
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png)",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsOpenQuantitiesText.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/SetPurchaseOrderGoodsReceipt.js",
+						"PreserveIconStackSpacing": false,
+						"StatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPOItemDeliveryDate.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPOItemState.js",
+						"Subhead": "{MaterialNum}",
+						"Title": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetMaterialName.js"
+					},
+					"Search": {
+						"Enabled" : true,
+                        "Delay": 500,
+                        "MinimumCharacterThreshold": 3,
+                        "Placeholder": "$(L,search)",
+                        "BarcodeScanner": true
+					},
+					"Target": {
+						"EntitySet": "PurchaseOrderItems",
+                        "QueryOptions": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/PurchaseOrderItemsListOnReturning.js",
+	"_Name": "PurchaseOrderItemsListPage",
+	"_Type": "Page"
+}

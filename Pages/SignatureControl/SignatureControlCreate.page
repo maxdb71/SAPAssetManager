@@ -1,0 +1,47 @@
+{
+    "Caption": "Signature",
+     "ActionBar": {
+        "Items": [
+            {
+                "Position": "left",
+                "SystemItem": "Cancel",
+                "OnPress": "/SAPAssetManager/Rules/SignatureControl/CheckForPermissionBeforeCancel.js"
+            },
+            {
+                "Position": "right",
+                "SystemItem": "$(PLT,'Done','')",
+                "Text": "/SAPAssetManager/Rules/Common/Platform/DoneText.js",
+                "OnPress": "/SAPAssetManager/Actions/SignatureControl/Create/SignatureControlRequiredField.action"
+            }
+        ]
+    },
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "_Name": "SignatureCaptureFormCell",
+                            "Caption": "$(L, add_signature)",
+                            "InitialStatusText": "$(L, initial_signature_text)",
+                            "CapturedLabel":"$(L, signature_captured)",
+                            "ShowTimestampInImage": true,
+                            "WatermarkText": "/SAPAssetManager/Rules/SignatureControl/Create/SignatureWatermarkText.js",
+                            "WatermarkTextMaxLines": 5,
+                            "TimestampFormatter":"MM/dd/yy hh:mm a zzz",
+                            "OnValueChange": "/SAPAssetManager/Rules/SignatureControl/Create/OnValueChange.js",
+                            "_Type": "Control.Type.FormCell.SignatureCapture",
+                            "Styles": {
+                                "Value": "SignatureCaptureFormCellValue"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "SignatureControlPage"
+}

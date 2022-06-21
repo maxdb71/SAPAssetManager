@@ -1,0 +1,148 @@
+{
+	"Caption": "$(L,po_detail_title)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"DetailImageIsCircular": false,
+						"HeadlineText": "{PurchaseOrderId}",
+						"PreserveIconStackSpacing": false,
+						"Subhead": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetVendorName.js",
+						"Tags": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetFormattadTags.js",
+						"Footnote":  "/SAPAssetManager/Rules/Inventory/Common/GetDocumentDateForInventoryHeader.js"
+					},
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_items)"
+					},
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Common/GetCount.js",
+						"Caption": "$(L,see_all)",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/PurchaseOrderItemsListNav.js",
+						"UseBottomPadding": true
+					},
+					"Header": {
+						"Caption": "$(L,items)",
+						"UseTopPadding": true
+					},
+					"MaxItemCount": 5,
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png)",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsOpenQuantitiesText.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/SetPurchaseOrderGoodsReceipt.js",
+						"PreserveIconStackSpacing": false,
+						"StatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPOItemDeliveryDate.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPOItemState.js",
+						"Subhead": "{MaterialNum}",
+						"Title": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetMaterialName.js"
+					},
+					"Target": {
+						"EntitySet": "PurchaseOrderItems",
+						"QueryOptions": "$filter=PurchaseOrderId eq '{{#Property:PurchaseOrderId}}'&$expand=MaterialPlant_Nav,ScheduleLine_Nav&$orderby=ItemNum",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Common/GetCount.js",
+						"Caption": "$(L,see_all)",
+						"FooterStyle": "attribute",
+						"UseBottomPadding": true,
+                        "OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/NotesViewNavForPurchaseOrder.js"
+					},
+					"Header": {
+						"Caption": "$(L,notes)",
+						"UseTopPadding": true
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_notes)"
+					},
+					"ObjectCell": {
+						"AccessoryType": "disclosureIndicator",
+						"Title":"{TextString}",
+						"PreserveIconStackSpacing":false,
+                        "OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/NotesViewNavForPurchaseOrder.js"
+					},
+					"Target":
+					{
+						"EntitySet": "PurchaseOrderHeaderLongTexts",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$filter=ObjectKey eq '{{#Property:PurchaseOrderId}}' and TextObjType eq 'EKKO'"
+					},
+					"_Name": "SectionObjectTable1",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_related_document)"
+					},
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Common/GetCount.js",
+						"Caption": "$(L,see_all)",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Actions/Inventory/MaterialDocument/MaterialDocumentListNav.action",
+						"UseBottomPadding": true
+					},
+					"Header": {
+						"Caption": "$(L,related_material_documents)",
+						"UseTopPadding": true
+					},
+					"MaxItemCount": 5,
+					"ObjectCell": {
+						"AccessoryType": "disclosureIndicator",
+						"DetailImageIsCircular": false,
+						"OnPress": "/SAPAssetManager/Actions/Inventory/MaterialDocument/MaterialDocumentDetailsNav.action",
+						"PreserveIconStackSpacing": false,
+						"Subhead": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetFormattedPODate.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentCreatedBy.js",
+						"Title": "{MaterialDocNumber}",
+                        "Description": "/SAPAssetManager/Rules/Inventory/MaterialDocument/GetHeaderTextPlusDeliveryNote.js"
+					},
+					"Target": {
+						"EntitySet": "MaterialDocuments",
+						"QueryOptions": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetRelatedMaterialDocsFilter.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable2",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable1",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+    "ToolBar": {
+        "Controls": [
+            {
+                "_Name": "FlexibleSpaceLeftTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "SystemItem": "FlexibleSpace"
+            },
+            {
+                "_Name": "IssuePartTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "Enabled" : "/SAPAssetManager/Rules/Inventory/Validation/PurchaseOrderGoodsReceiptReceiveAllIsAllowed.js",
+                "Caption": "$(L,receive_all)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/SetPurchaseOrderGoodsReceiptReceiveAll.js"
+            },
+            {
+                "_Name": "FlexibleSpaceRightTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "SystemItem": "FlexibleSpace"
+            }
+        ]
+    },
+    "DataSubscriptions": ["PurchaseOrderHeaders", "MaterialDocItems","MaterialDocuments","PurchaseOrderItems"],
+	"_Name": "PurchaseOrderDetails",
+	"_Type": "Page"
+}

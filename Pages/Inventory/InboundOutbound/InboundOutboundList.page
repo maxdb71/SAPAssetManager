@@ -1,0 +1,55 @@
+{
+	"Caption": "$(L,all_documents_list_title)",
+    "ActionBar": {
+		"Items": [
+            {
+				"Position": "right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/sync.png,/SAPAssetManager/Images/sync.android.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+			},		
+            {
+                "Position": "right",
+                "Icon": "$(PLT,'','res://filter')",
+                "Text": "$(L,filter)",
+                "OnPress": "/SAPAssetManager/Actions/Inventory/InboundOutbound/InboundOutboundListFilter.action"
+            }
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectCell": {
+						"AccessoryType": "disclosureIndicator",
+						"DetailImageIsCircular": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/Inbound/InboundNavigateToObject.js",
+						"PreserveIconStackSpacing": false,
+						"StatusText": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentStatusText.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentVendorText.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentTypeText.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentDateText.js",
+						"Title": "{ObjectId}"
+					},
+					"Search": {
+						"BarcodeScanner": true,
+						"Enabled": true,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)"
+					},
+					"Target": {
+						"EntitySet": "MyInventoryObjects",
+						"QueryOptions":  "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/GetInboundOutboundListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/InboundOrOutbound/InboundOutboundListOnReturning.js",
+	"_Name": "InboundOutboundListPage",
+	"_Type": "Page"
+}

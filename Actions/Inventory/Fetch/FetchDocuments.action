@@ -1,0 +1,9 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/Fetch/FetchDocuments.page",
+    "Filterable" : "#Page:InventorySearchPage/#Control:SectionedTable",
+    "ModalPage": true,
+	"_Type": "Action.Type.Navigation",
+    "ActionResult": {
+        "_Name": "filterResult"
+    }
+}

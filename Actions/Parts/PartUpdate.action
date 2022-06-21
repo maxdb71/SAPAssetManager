@@ -1,0 +1,31 @@
+{
+  "_Type": "Action.Type.ODataService.UpdateEntity",
+  "Target": {
+    "EntitySet": "MyWorkOrderComponents",
+    "Service": "/SAPAssetManager/Services/AssetManager.service",
+    "ReadLink": "{@odata.readLink}"
+  },
+  "Properties": {
+    "OperationNo": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataOperationNo.js",
+    "ItemCategory": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataItemCategory.js",
+    "MaterialNum": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataMaterialNum.js",
+    "Plant": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataPlant.js",
+    "RequirementQuantity": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataQuantity.js",
+    "UnitOfMeasure": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataUnitOfMeasure.js",
+    "TextTypeDesc": "#Control:TextItemSim/#Value",
+    "ComponentDesc": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataComponentDesc.js",
+    "OperationDesc": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataOperationDesc.js",
+    "ItemCategoryDesc": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateSetOdataItemCategoryDesc.js",
+    "StorageLocation": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartStorageLocation.js"
+  },
+  "RequestOptions":
+  {
+    "UpdateMode": "/SAPAssetManager/Rules/Common/ODataUpdateMode.js"
+  },
+  "Headers": {
+    "OfflineOData.TransactionID":"/SAPAssetManager/Rules/WorkOrders/WorkOrderId.js"
+  },
+  "OnSuccess": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntitySuccessMessage.action",
+  "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/UpdateEntityFailureMessage.action",
+  "ValidationRule": "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateUpdateValidation.js"
+}

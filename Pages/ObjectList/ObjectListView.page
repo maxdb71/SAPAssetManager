@@ -1,0 +1,85 @@
+{
+    "Caption": "/SAPAssetManager/Rules/ObjectList/ObjectListViewCaption.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header":
+                    {
+                        
+                        "Grid":
+                        {
+                            "Items":
+                            [{
+                                "Text": "$(L,equipment)",
+                                "Style": "GridTableHeaderText"
+                            },
+                            {
+                                "Text": "$(L,functional_location)",
+                                "Style": "GridTableHeaderText"
+                            },
+                            {
+                                "Text": "$(L,notification)",
+                                "Style": "GridTableHeaderText"
+                            },
+                            {
+                                "Text": "$(L,material)",
+                                "Style": "GridTableHeaderText"
+                            },
+                            {
+                                "Text": "$(L,operation)",
+                                "Style": "GridTableHeaderText"
+                            }]
+                        }
+                    },
+                    "Row": {
+                        "Layout": {
+                            "ColumnWidthPercentage": [0.20,0.20,0.20,0.20,0.20]
+                        },
+                        "OnPress": "/SAPAssetManager/Actions/ObjectList/WorkOrderObjectDetailViewNav.action",
+                        "AccessoryType": "disclosureIndicator",
+                        "Items":
+                        [{
+                            "Text": "/SAPAssetManager/Rules/ObjectList/WorkOrderObjectEquipmentDesc.js",
+                            "Style": "GridTableRowText",
+                            "BindTo": "headline"
+                        },
+                        {
+                            "Text": "/SAPAssetManager/Rules/ObjectList/WorkOrderObjectFuncLocDesc.js",
+                            "Style": "GridTableRowText",
+                            "BindTo": "subheadline"
+                        },
+                        {
+                            "Text": "/SAPAssetManager/Rules/ObjectList/WorkOrderObjectNotificationDesc.js",
+                            "Style": "GridTableRowText",
+                            "BindTo": "footnote"
+                        },
+                        {
+                            "Text": "/SAPAssetManager/Rules/ObjectList/ObjectListMaterialDesc.js",
+                            "Style": "GridTableRowText",
+                            "BindTo": "status"
+                        },
+                        {
+                            "Text": "/SAPAssetManager/Rules/ObjectList/ObjectListOperationShortTxt.js",
+                            "Style": "GridTableRowText",
+                            "BindTo": "substatus"
+                        }]
+                    },
+                    "Target":
+                    {
+                        "EntitySet" : "{{#Property:@odata.readLink}}/WOObjectList_Nav",
+                        "Service" : "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/ObjectList/WorkOrderObjectListQueryOptions.js"
+                    },
+                    "_Type": "Section.Type.GridTable",
+                    "_Name": "WorkOrderObjectLists"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable",
+            "_Name": "SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "ObjectListViewPage",
+    "DataSubscriptions": ["MyWorkOrderObjectLists"]
+}

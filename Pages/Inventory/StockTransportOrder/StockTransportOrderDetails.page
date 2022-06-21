@@ -1,0 +1,118 @@
+{
+	"Caption": "$(L,sto_detail_title)",
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"BodyText": "/SAPAssetManager/Rules/Inventory/Common/GetDocumentDateForInventoryHeader.js",
+						"DetailImageIsCircular": false,
+						"HeadlineText": "{StockTransportOrderId}",
+						"PreserveIconStackSpacing": false,
+						"Subhead": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/GetPlantName.js",
+						"Tags": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/GetTags.js"
+					},
+					"_Name": "SectionObjectHeader0",
+					"_Type": "Section.Type.ObjectHeader"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_items)"
+					},
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Common/GetCount.js",
+						"Caption": "$(L,see_all)",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/StockTransportOrderItemsListNav.js",
+						"UseBottomPadding": true
+					},
+					"Header": {
+						"Caption": "$(L,items)",
+						"UseTopPadding": true
+					},
+					"MaxItemCount": 5,
+					"ObjectCell": {
+						"AccessoryButtonIcon": "$(PLT, /SAPAssetManager/Images/edit-accessory.ios.png, /SAPAssetManager/Images/edit-accessory.android.png)",
+						"DetailImageIsCircular": false,
+						"Footnote": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetPurchaseOrderItemsOpenQuantitiesText.js",
+						"OnAccessoryButtonPress": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/SetSTOTransactionWrapper.js",
+						"PreserveIconStackSpacing": false,
+						"StatusText": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/GetDeliveryDate.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/GetStockItemState.js",
+						"Subhead": "{MaterialNum}",
+						"Title": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetMaterialName.js"
+					},
+					"Target": {
+						"EntitySet": "StockTransportOrderItems",
+						"QueryOptions": "$filter=StockTransportOrderId eq '{{#Property:StockTransportOrderId}}'&$expand=MaterialPlant_Nav,StockTransportOrderHeader_Nav,STOScheduleLine_Nav&$orderby=ItemNum",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				},
+				{
+					"EmptySection": {
+						"Caption": "$(L,no_related_document)"
+					},
+					"Footer": {
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Common/GetCount.js",
+						"Caption": "$(L,see_all)",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Actions/Inventory/MaterialDocument/MaterialDocumentListNav.action",
+						"UseBottomPadding": true
+					},
+					"Header": {
+						"Caption": "$(L,related_material_documents)",
+						"UseTopPadding": true
+					},
+					"MaxItemCount": 5,
+					"ObjectCell": {
+						"AccessoryType": "disclosureIndicator",
+						"DetailImageIsCircular": false,
+						"OnPress": "/SAPAssetManager/Actions/Inventory/MaterialDocument/MaterialDocumentDetailsNav.action",
+						"PreserveIconStackSpacing": false,
+						"Subhead": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetFormattedPODate.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/MaterialDocument/MaterialDocumentCreatedBy.js",
+						"Title": "{MaterialDocNumber}",
+                        "Description": "/SAPAssetManager/Rules/Inventory/MaterialDocument/GetHeaderTextPlusDeliveryNote.js"
+					},
+					"Target": {
+						"EntitySet": "MaterialDocuments",
+						"QueryOptions": "/SAPAssetManager/Rules/Inventory/PurchaseOrder/GetRelatedMaterialDocsFilter.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable3",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable1",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+    "ToolBar": {
+        "Controls": [
+            {
+                "_Name": "FlexibleSpaceLeftTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "SystemItem": "FlexibleSpace"
+            },
+            {
+                "_Name": "IssuePartTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "Enabled" : "/SAPAssetManager/Rules/Inventory/Validation/PurchaseOrderGoodsReceiptReceiveAllIsAllowed.js",
+                "Caption": "$(L,receive_all)",
+                "OnPress": "/SAPAssetManager/Rules/Inventory/StockTransportOrder/SetSTOGoodsReceiptReceiveAll.js"
+            },
+            {
+                "_Name": "FlexibleSpaceRightTbI",
+                "_Type": "Control.Type.ToolbarItem",
+                "SystemItem": "FlexibleSpace"
+            }
+        ]
+    },
+    "DataSubscriptions": ["StockTransportOrderHeaders", "MaterialDocItems","MaterialDocuments","StockTransportOrderItems"],
+	"_Name": "StockTransportOrderDetails",
+	"_Type": "Page"
+}

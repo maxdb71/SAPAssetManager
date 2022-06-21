@@ -1,0 +1,171 @@
+{
+	"Caption": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionCharacteristicsPageCaption.js",
+	"ActionBar":
+	{
+		"Items":
+		[{
+			"Text": "$(L,record_results)",
+			"Position": "Right",
+			"OnPress": "/SAPAssetManager/Actions/InspectionCharacteristics/Update/InspectionCharacteristicsUpdateNav.action",
+			"Visible": "/SAPAssetManager/Rules/InspectionCharacteristics/Update/EnableRecordResults.js"
+		}]
+	},
+	"Controls":
+	[{
+		"Sections":
+		[{
+			"Header": {
+				"Caption": "$(L, target_specification)"
+			},
+			"KeyAndValues": [
+				{
+					"KeyName": "",
+					"Value": "/SAPAssetManager/Rules/InspectionCharacteristics/Update/InspectionCharacteristicsTargetSpecification.js"
+				}
+			],
+			"Layout": {
+				"NumberOfColumns": 1,
+				"MinimumInteritemSpacing": "$(PLT,66,0)" 
+			},
+			"_Type": "Section.Type.KeyValue",
+			"_Name": "TargetSpecification"
+		},
+		{
+			"Header": {
+				"Caption": "$(L, inspection_method_note)"
+			},
+			"KeyAndValues": [
+				{
+					"KeyName": "",
+					"Value": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionMethod/InspectionMethodLongText.js"
+				}
+			],
+			"Layout": {
+				"NumberOfColumns": 1,
+				"MinimumInteritemSpacing": "$(PLT,66,0)" 
+			},
+			"_Type": "Section.Type.KeyValue",
+			"_Name": "Notes"
+		},
+		{
+			"Header": {
+				"Caption": "$(L,inspection_method_document)"
+			},
+			"EmptySection": {
+				"Caption": "$(L,no_documents_available)"
+			},
+			"ObjectCell": {
+				"PreserveIconStackSpacing": true,
+				"AccessoryType": "disclosureIndicator",
+				"ProgressIndicator": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionMethod/InspectionMethodDocumentSetIndicatorState.js",
+				"DetailImage": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionMethod/InspectionMethodDocumentTypeImage.js",
+				"DetailImageIsCircular": false,
+				"Title": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionMethod/InspectionMethodDocumentFileName.js",
+				"Subhead": "#Property:Document_Nav/#Property:Description",
+				"Footnote": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionMethod/InspectionMethodDocumentFileSize.js",
+				"OnAccessoryButtonPress": "/SAPAssetManager/Rules/InspectionCharacteristics/InspectionMethod/InspectionMethodDownloadOrOpenDocument.js"
+			},
+			"Target": {
+				"EntitySet": "{{#Property:@odata.readLink}}/InspectionMethod_Nav/MethodDoc_Nav",
+				"QueryOptions": "$expand=Document_Nav&$orderby=Document_Nav/FileName&$filter=Document_Nav/FileName ne null",
+				"Service": "/SAPAssetManager/Services/AssetManager.service"
+			},
+			"_Type": "Section.Type.ObjectTable",
+			"_Name": "DocumentSection"
+		},
+		{
+			"Header": {
+				"Caption": "$(L,notification_item)"
+			},
+			"EmptySection": {
+				"Caption": "$(L, no_notification_available)"
+			},
+			"ObjectCell":
+			{
+				"Icons":"/SAPAssetManager/Rules/Notifications/ListView/NotificationListViewIconImages.js",
+				"Title": "{NotificationDescription}",
+				"Subhead": "{NotificationNumber}",
+				"Footnote": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+				"StatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+				"SubstatusText": "/SAPAssetManager/Rules/Notifications/ListView/NotificationsListViewFormat.js",
+				"AccessoryType": "disclosureIndicator",
+				"OnPress" : "/SAPAssetManager/Actions/Notifications/NotificationDetailsNav.action"
+			},
+			"Target":
+			{
+				"EntitySet": "{{#Property:@odata.readLink}}/NotifItems_Nav",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "/SAPAssetManager/Rules/Notifications/NotificationsListViewQueryOption.js"
+			},
+			"_Name": "NotificationItemSection",
+			"_Type": "Section.Type.ObjectTable"
+		},
+		{
+			"Header": {
+				"Grid":
+				{
+					"Items":
+					[{
+						"Text": "$(L,date)",
+                        "Style": "GridTableHeaderText"
+					},
+					{
+						"Text": "$(L,user)",
+                        "Style": "GridTableHeaderText"
+					},
+					{
+						"Text": "$(L,value)",
+                        "Style": "GridTableHeaderText"
+					},
+					{
+						"Text": "$(L,valuation)",
+                        "Style": "GridTableHeaderText"
+					}]
+				}
+			},
+			"Row":
+			{
+				"Items":
+				[{
+					"Text": "$(D, {{#Property:LastChangedDate}})",
+                    "Style": "GridTableRowText",
+					"BindTo": "headline"
+				},
+				{
+					"Text": "/SAPAssetManager/Rules/InspectionCharacteristics/UserText.js",
+                    "Style": "GridTableRowText",
+					"BindTo": "subheadline"
+				},
+				{
+					"Text": "/SAPAssetManager/Rules/InspectionCharacteristics/ValueResult.js",
+                    "Style": "GridTableRowText",
+					"BindTo": "footnote"
+				},
+				{
+					"Text": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationShortText.js",
+					"Style": "/SAPAssetManager/Rules/InspectionCharacteristics/ValuationStyle.js",
+					"BindTo": "status"
+				}],
+				"Layout": {
+					"ColumnWidthPercentage": [
+						0.25,
+						0.25,
+						0.25,
+						0.25
+					]
+				}
+			},
+			"Target":
+			{
+				"EntitySet": "{{#Property:@odata.readLink}}/MasterInspChar_Nav/InspHistory_Nav",
+				"Service": "/SAPAssetManager/Services/AssetManager.service",
+				"QueryOptions": "$orderby=LastChangedDate desc"
+			},
+			"_Name": "InspectionCharacteristicHistorySection",
+			"_Type": "Section.Type.GridTable"
+		}],
+		"_Type": "Control.Type.SectionedTable"
+	}],
+	"_Name": "InspectionCharacteristicDetailsPage",
+	"_Type": "Page"
+}

@@ -1,0 +1,4 @@
+{
+	"PageToOpen": "/SAPAssetManager/Pages/Inventory/StockTransportOrder/StockTransportOrderItemsList.page",
+	"_Type": "Action.Type.Navigation"
+}

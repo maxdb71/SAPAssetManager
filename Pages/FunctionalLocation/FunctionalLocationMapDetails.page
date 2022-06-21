@@ -1,0 +1,300 @@
+{
+   "Caption":"$(L,map)",
+   "Controls":
+   [{
+         "_Type":"Control.Type.Extension",
+         "Module": "extension-MapFramework",
+         "Control":"MapExtensionWithContext",
+         "Class":"MapExtensionWithContext",
+         "_Name":"MapExtensionControl",
+         "ExtensionProperties":{
+            "Config": {
+				"Target": {
+					"EntitySet": "GISMapParameters",
+					"Service": "/SAPAssetManager/Services/AssetManager.service",
+					"Properties": [],
+					"KeyProperties": []
+				},
+				"ViewConfig": {
+                    "ZoomOnLocationEnabled": false,
+                    "UseDynamicLayerDisplayPrefs": true
+				},
+				"BaseMaps": [],
+				"FeatureLayers": []
+			},
+			"TokenAuthentication": {
+				"Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+			},
+			"MapToolsetIcons": [{
+					"name": "search",
+					"normalAssetName": "Search",
+					"isVisible": true,
+					"isEnabled": true
+				},
+				{
+					"name": "settings",
+					"normalAssetName": "Information",
+					"isVisible": true,
+					"isEnabled": true
+				},
+				{
+					"name": "currentLocation",
+					"normalAssetName": "Location",
+					"selectedAssetName": "LocationEnabled",
+					"isVisible": true,
+					"isEnabled": true
+				},
+				{
+					"name": "zoomExtents",
+					"normalAssetName": "ZoomExtent",
+					"isVisible": true,
+					"isEnabled": true
+				}
+			],
+			"InfoPanel": {
+                "DirectionsButtonText": "$(L, map_info_panel_directions)"
+            },
+            "SettingsControl": {
+                "Title": "$(L, settings)",
+                "CloseActionTitle": "$(L, map_settings_close)",
+                "BasemapsTitle": "$(L,bm_title)",
+				"FeatureLayersTitle": "$(L, fl_title)",
+				"NearMe": {
+					"DistanceTitle": "$(L, map_nearme_dist_title)",
+					"UnitsTitle": "$(L, map_nearme_unit_title)",
+					"Distances": [0.5, 1.0, 2.0, 5.0],
+					"Units": [{
+							"Value": "Mi",
+							"Display": "$(L, map_nearme_mi)"
+						},
+						{
+							"Value": "Km",
+							"Display": "$(L, map_nearme_km)"
+						}
+					]
+				}
+			},
+			"SearchControl": {
+				"SearchPlaceholder": "$(L, map_search_placeholder)",
+				"SearchFields": [
+					"Title", "Footnote", "Subhead", "Description"
+				],
+				"IsResultTextDisplayed": true,
+				"ResultsPrefix": "$(L, map_search_results_pref)",
+				"ResultsSuffix": "$(L, map_search_results_sufx)",
+				"NearMeFilterName": "$(L, map_search_nearme)",
+				"QuickFilters": [{
+						"FilterType": "TimeFilter",
+						"Type": [
+							"Job"
+						],
+						"Name": "$(L, map_search_wo_due_today)",
+						"PeriodInDays": 1,
+						"PropertyName": "DueDate"
+					},
+					{
+						"FilterType": "TextFilter",
+						"Name": "$(L, map_search_high_priority)",
+						"Properties": [
+							"StatusText"
+						],
+						"Text": "High"
+					}
+				]
+            },
+            "BusinessObjects":[  
+                {
+					"Type": "Equipment",
+					"Title": "$(L, dl_equip)",
+					"Legend": "MarkerAsset",
+					"Target": {
+						"EntitySet": "MyEquipments",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=EquipGeometries/Geometry&$filter=EquipGeometries/any(eg:sap.entityexists(eg/Geometry))",
+						"Properties": [],
+						"KeyProperties": []
+					},
+					"Enable": true,
+					"ObjectScheme": {
+						"Geometry": "EquipGeometries/Geometry/GeometryValue",
+						"Layer": "Equipment",
+						"Properties": {
+							"ID": "{EquipId}",
+							"Title": "{EquipDesc}",
+							"Subhead": "$(L, equipment_x, {EquipId})",
+							"StatusText": "/SAPAssetManager/Rules/Maps/PriorityStatusText.js",
+							"StatusImage": "/SAPAssetManager/Rules/Maps/PriorityBadge.js",
+							"SubstatusText": "/SAPAssetManager/Rules/Maps/PrioritySubstatusText.js",
+							"Tags": [
+								"{EquipType}",
+								"{EquipCategory}"
+							],
+							"ButtonText":"$(L, map_info_panel_directions)",
+							"BodyText": "/SAPAssetManager/Rules/Maps/MapEquipWorkCenter.js"
+						},
+						"Symbol": {
+							"marker": "/SAPAssetManager/Rules/Maps/Icons/EquipmentIcon.js",
+							"styleWidth": "/SAPAssetManager/Rules/Maps/MarkerSizeWidth.js",
+							"styleHeight": "/SAPAssetManager/Rules/Maps/MarkerSizeHeight.js",
+							"lineColor": "FFA325",
+							"fillColor": "FFA32533",
+							"lineWidth": 2,
+							"yOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+							"xOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+							"onSelect": {
+								"marker": "/SAPAssetManager/Rules/Maps/Icons/SelectedEquipmentIcon.js",
+								"styleWidth": 56,
+								"styleHeight": 68,
+								"yOffset": 32,
+								"xOffset": 0,
+								"lineWidth": 4
+							}
+						}
+					}
+				},
+				{
+					"Type": "FunctionalLocation",
+					"Title": "$(L, dl_floc)",
+					"Legend": "MarkerFunctionalLocation",
+					"Target": {
+						"EntitySet": "MyFunctionalLocations",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=FuncLocGeometries/Geometry&$filter=FuncLocGeometries/any(fg:sap.entityexists(fg/Geometry))",
+						"Properties": [],
+						"KeyProperties": []
+					},
+					"Enable": true,
+					"ObjectScheme": {
+						"Geometry": "FuncLocGeometries/Geometry/GeometryValue",
+						"Layer": "FunctionalLocation",
+						"Properties": {
+							"ID": "{FuncLocId}",
+							"Title": "{FuncLocDesc}",
+							"Subhead": "$(L, function_location_x, {FuncLocId})",
+							"Tags": [
+								"{FuncLocType}"
+							],
+							"BodyText": "/SAPAssetManager/Rules/Maps/MapFuncLocWorkCenter.js",
+							"ButtonText":"$(L, map_info_panel_directions)"
+						},
+						"Symbol": {
+							"marker": "MarkerFunctionalLocation",
+							"styleWidth": "/SAPAssetManager/Rules/Maps/MarkerSizeWidth.js",
+							"styleHeight": "/SAPAssetManager/Rules/Maps/MarkerSizeHeight.js",
+							"lineColor": "E8743B",
+							"fillColor": "E8743B33",
+							"lineWidth": 2,
+							"yOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+							"xOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+							"onSelect": {
+								"marker": "MarkerFunctionalLocationSelected",
+								"styleWidth": 56,
+								"styleHeight": 68,
+								"yOffset": 32,
+								"xOffset": 0,
+								"lineWidth": 4
+							}
+						}
+					}
+				},
+				{
+					"Type": "Notification",
+					"Title": "$(L, dl_notif)",
+					"Legend": "MarkerNotification",
+					"Target": {
+						"EntitySet": "MyNotificationHeaders",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=NotifGeometries/Geometry&$filter=NotifGeometries/any(ng:sap.entityexists(ng/Geometry))",
+						"Properties": [],
+						"KeyProperties": []
+					},
+					"Enable": true,
+					"ObjectScheme": {
+						"Geometry": "NotifGeometries/Geometry/GeometryValue",
+						"Layer": "Notification",
+						"Properties": {
+							"ID": "{NotificationNumber}",
+							"Title": "{NotificationDescription}",
+							"Subhead": "$(L, notification_x, {NotificationNumber})",
+							"StatusText": "/SAPAssetManager/Rules/Maps/PriorityStatusText.js",
+							"SubstatusText": "/SAPAssetManager/Rules/Maps/PrioritySubstatusText.js",
+							"StatusImage": "/SAPAssetManager/Rules/Maps/PriorityBadge.js",
+							"Tags": [
+								"/SAPAssetManager/Rules/Maps/MapNotificationStatus.js"
+							],
+							"BodyText": "/SAPAssetManager/Rules/Maps/MapNotificationWorkCenter.js",
+							"Footnote": "/SAPAssetManager/Rules/Maps/MapNotificationDueDate.js",
+							"FormatRule": "",
+							"ButtonText":"$(L, map_info_panel_directions)",
+							"Priority": "{Priority}"
+						},
+						"Actions": [{
+								"Title": "$(L, action_view_notif)",
+								"Icon": "ActionView",
+								"Type": "View",
+								"CallbackInfo": {
+									"Action": "/SAPAssetManager/Actions/Notifications/NotificationDetailsNav.action",
+									"Target": {
+										"EntitySet": "MyNotificationHeaders",
+										"Service": "/SAPAssetManager/Services/AssetManager.service",
+										"QueryOptions": "/SAPAssetManager/Rules/Notifications/Map/NotificationDetailsFromMapQueryOptions.js",
+										"Properties": [],
+										"KeyProperties": []
+									}
+								}
+							},
+							{
+								"Title": "$(L, action_create_notif)",
+								"Icon": "ActionAdd",
+								"Type": "Create",
+								"IsVisible":"/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreate.js",
+								"CallbackInfo": {
+									"Action": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateChangeSetNav.js",
+									"Target": {
+										"EntitySet": "MyNotificationHeaders",
+										"Service": "/SAPAssetManager/Services/AssetManager.service",
+										"QueryOptions": "$expand=NotifMobileStatus_Nav,NotifDocuments&$filter=NotificationNumber eq '{NotificationNumber}'",
+										"Properties": [],
+										"KeyProperties": []
+									}
+								}
+							},
+							{
+								"Title": "$(L, action_update_notif)",
+								"Icon": "ActionEdit",
+								"Type": "Update",
+								"CallbackInfo": {
+									"Action": "/SAPAssetManager/Rules/Notifications/NotificationUpdateNav.js",
+									"Target": {
+										"EntitySet": "MyNotificationHeaders",
+										"Service": "/SAPAssetManager/Services/AssetManager.service",
+										"QueryOptions": "$expand=NotifPriority&$filter=NotificationNumber eq '{NotificationNumber}'",
+										"Properties": [],
+										"KeyProperties": []
+									}
+								}
+							}
+						],
+						"Symbol": {
+							"marker": "/SAPAssetManager/Rules/Maps/Icons/NotificationIcon.js",
+							"styleWidth": "/SAPAssetManager/Rules/Maps/MarkerSizeWidth.js",
+							"styleHeight": "/SAPAssetManager/Rules/Maps/MarkerSizeHeight.js",
+							"yOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+							"xOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+							"onSelect": {
+								"marker": "/SAPAssetManager/Rules/Maps/Icons/SelectedNotificationIcon.js",
+								"styleWidth": 56,
+								"styleHeight": 68,
+								"yOffset": 32,
+								"xOffset": 0
+							}
+						}
+					}
+				}
+            ]
+         }
+      }
+   ],
+   "_Type":"Page",
+   "_Name":"FunctionalLocationMapDetailsPage"
+}

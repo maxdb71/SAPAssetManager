@@ -1,0 +1,3 @@
+export default function SubOperationsListViewQueryOption() {
+	return '$expand=SubOpMobileStatus_Nav,SubOperationLongText,WorkOrderOperation,WorkOrderOperation/OperationMobileStatus_Nav,WorkOrderOperation/WOHeader,WorkOrderOperation/WOHeader/OrderMobileStatus_Nav,WorkOrderOperation/WOHeader/UserTimeEntry_Nav,WorkOrderOperation/UserTimeEntry_Nav&$orderby=OrderId,OperationNo,SubOperationNo';
+}

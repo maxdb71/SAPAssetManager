@@ -1,0 +1,7 @@
+{
+	"_Type": "Action.Type.OpenBarcodeScanner",
+    "OnSuccess": "/SAPAssetManager/Rules/Inventory/Scan/ApplicationScanOnSuccess.js",
+	"ActionResult": {
+        "_Name": "BarcodeScanner"
+    }
+}

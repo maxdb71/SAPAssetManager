@@ -1,0 +1,46 @@
+{
+	"Caption": "$(L,get_passcode)",
+    "OnLoaded": "/SAPAssetManager/Rules/DigitalSignature/GetTOTPOnloaded.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "Right",
+				"Text": "$(L,register_passcode_screen)",
+                "OnPress": "/SAPAssetManager/Rules/DigitalSignature/TOTPPasscodeValidation.js"
+			}
+		]
+	},
+	"Controls": [
+        {
+            "Sections": [
+                {
+                    "Controls": [
+                        {
+                            "_Type": "Control.Type.FormCell.SimpleProperty",
+                            "_Name": "passcode",
+                            "IsEditable": true,
+                            "Caption": "Passcode",
+                            "PlaceHolder": "$(L, enter_passcode)",
+                            "KeyboardType": "Number"
+                        }
+                    ]
+                },
+                {
+                  "Caption": "$(L,register_totp_help_text)",
+                  "Controls": [
+                      {
+                        "Value": "",
+                        "_Name": "Seed",
+                        "IsAutoResizing": true,
+                        "_Type": "Control.Type.FormCell.Note"
+                    }
+                    ]
+                }
+            ],
+            "_Name": "FormCellContainer0",
+            "_Type": "Control.Type.FormCellContainer"
+        }
+    ],
+    "_Name": "PasscodeTOTP",
+    "_Type": "Page"
+}

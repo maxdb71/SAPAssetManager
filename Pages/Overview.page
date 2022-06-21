@@ -1,0 +1,554 @@
+{
+	"Caption": "$(L,app_display_name)",
+	"OnLoaded": "/SAPAssetManager/Rules/OverviewPage/OverviewOnPageLoad.js",
+	"OnReturning": "/SAPAssetManager/Rules/OverviewPage/OverviewOnPageReturning.js",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/sync.png,/SAPAssetManager/Images/sync.android.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+			}
+		]
+	},
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "OverviewPageSectionedTable",
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false
+					},
+					"Module": "extension-MapFramework",
+					"Control": "MapViewExtension",
+					"Class": "MapViewExtension",
+					"Height": 240,
+					"ExtensionProperties": {
+						"Config": {
+							"Target": {
+								"EntitySet": "GISMapParameters",
+								"Service": "/SAPAssetManager/Services/AssetManager.service",
+								"Properties": [],
+								"KeyProperties": []
+							},
+							"ViewConfig": {
+								"UseDynamicLayerDisplayPrefs": true,
+								"EnableUserInteraction": false
+							},
+							"DefaultViewEnvelope": {
+								"minPoint": {
+									"y": 2801774.86,
+									"x": -13898124.21
+								},
+								"maxPoint": {
+									"y": 6340332.34,
+									"x": -7445653.57
+								},
+								"padding": 10000.0
+							},
+							"BaseMaps": [],
+							"FeatureLayers": []
+						},
+						"InfoPanel": {
+							"DirectionsButtonText": "$(L, map_info_panel_directions)"
+						},
+						"TokenAuthentication": {
+							"Action": "/SAPAssetManager/Rules/Extensions/TokenRequest.js"
+						},
+						"MapToolsetIcons": [],
+						"BusinessObjects": [
+							
+							{
+								"Type": "Equipment",
+								"Title": "$(L, dl_equip)",
+								"Legend": "MarkerAsset",
+								"Target": {
+									"EntitySet": "MyEquipments",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$expand=EquipGeometries/Geometry&$filter=EquipGeometries/any(eg:sap.entityexists(eg/Geometry))",
+									"Properties": [],
+									"KeyProperties": []
+								},
+								"Enable": true,
+								"ObjectScheme": {
+									"Geometry": "EquipGeometries/Geometry/GeometryValue",
+									"Layer": "Equipment",
+									"Properties": {
+										"ID": "{EquipId}"
+									},
+									"Actions": [],
+									"Symbol": {
+										"marker": "/SAPAssetManager/Rules/Maps/Icons/EquipmentIcon.js",
+										"styleWidth": "/SAPAssetManager/Rules/Maps/MarkerSizeWidth.js",
+										"styleHeight": "/SAPAssetManager/Rules/Maps/MarkerSizeHeight.js",
+										"lineColor": "FFA325",
+										"fillColor": "FFA32533",
+										"lineWidth": 2,
+										"yOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+										"xOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js"
+									}
+								}
+							},
+							{
+								"Type": "FunctionalLocation",
+								"Title": "$(L, dl_floc)",
+								"Legend": "MarkerFunctionalLocation",
+								"Target": {
+									"EntitySet": "MyFunctionalLocations",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$expand=FuncLocGeometries/Geometry&$filter=FuncLocGeometries/any(fg:sap.entityexists(fg/Geometry))",
+									"Properties": [],
+									"KeyProperties": []
+								},
+								"Enable": true,
+								"ObjectScheme": {
+									"Geometry": "FuncLocGeometries/Geometry/GeometryValue",
+									"Layer": "FunctionalLocation",
+									"Properties": {
+										"ID": "{FuncLocId}"
+									},
+									"Actions": [],
+									"Symbol": {
+										"marker": "MarkerFunctionalLocation",
+										"styleWidth": "/SAPAssetManager/Rules/Maps/MarkerSizeWidth.js",
+										"styleHeight": "/SAPAssetManager/Rules/Maps/MarkerSizeHeight.js",
+										"lineColor": "E8743B",
+										"fillColor": "E8743B33",
+										"lineWidth": 2,
+										"yOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+										"xOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js"
+									}
+								}
+							},
+							{
+								"Type": "Notification",
+								"Title": "$(L, dl_notif)",
+								"Legend": "MarkerNotification",
+								"Target": {
+									"EntitySet": "MyNotificationHeaders",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$expand=NotifGeometries/Geometry&$filter=NotifGeometries/any(ng:sap.entityexists(ng/Geometry))",
+									"Properties": [],
+									"KeyProperties": []
+								},
+								"Enable": true,
+								"ObjectScheme": {
+									"Geometry": "NotifGeometries/Geometry/GeometryValue",
+									"Layer": "Notification",
+									"Properties": {
+										"ID": "{NotificationNumber}"
+									},
+									"Actions": [],
+									"Symbol": {
+										"marker": "/SAPAssetManager/Rules/Maps/Icons/NotificationIcon.js",
+										"styleWidth": "/SAPAssetManager/Rules/Maps/MarkerSizeWidth.js",
+										"styleHeight": "/SAPAssetManager/Rules/Maps/MarkerSizeHeight.js",
+										"lineColor": "19A979",
+										"fillColor": "19A97933",
+										"lineWidth": 2,
+										"yOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+										"xOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js"
+									}
+								}
+							},
+							{
+								"Type": "Job",
+								"Title": "$(L,workorders)",
+								"Legend": "MarkerJob",
+								"Target": {
+									"EntitySet": "MyWorkOrderHeaders",
+									"Service": "/SAPAssetManager/Services/AssetManager.service",
+									"QueryOptions": "$expand=WOGeometries/Geometry,OrderMobileStatus_Nav,MarkedJob&$filter=WOGeometries/any(wg:sap.entityexists(wg/Geometry))",
+									"Properties": [],
+									"KeyProperties": []
+								},
+								"Enable": true,
+								"ObjectScheme": {
+									"Geometry": "WOGeometries/Geometry/GeometryValue",
+									"Layer": "Job",
+									"Properties": {
+										"ID": "{OrderId}"
+									},
+									"Actions": [],
+									"Symbol": {
+										"marker": "/SAPAssetManager/Rules/Maps/Icons/WorkOrderIcon.js",
+										"styleWidth": "/SAPAssetManager/Rules/Maps/MarkerSizeWidth.js",
+										"styleHeight": "/SAPAssetManager/Rules/Maps/MarkerSizeHeight.js",
+										"lineColor": "295171",
+										"fillColor": "29517133",
+										"lineWidth": 2,
+										"yOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js",
+										"xOffset": "/SAPAssetManager/Rules/Maps/MarkerOffset.js"
+									}
+								}
+							}
+						]
+					},
+					"OnPress": "/SAPAssetManager/Actions/Extensions/MapNav.action",
+					"_Type": "Section.Type.Extension",
+					"Visible": "/SAPAssetManager/Rules/Maps/IsGISEnabled.js"
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Visible": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/IsSupervisorSectionVisibleForWO.js",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)" 
+					},
+					"_Name": "SupervisorSectionForWorkOrders",
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/SupervisorSectionTitleForWO.js"
+					},
+					"EmptySection": {
+						"Caption": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/SupervisorEmptySectionTitleForWO.js"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": {
+						"Title": "#Property:OrderDescription",
+						"Subhead": "{OrderId}",
+						"AccessoryType": "disclosureIndicator",
+						"Footnote": "/SAPAssetManager/Rules/DateTime/DueDate.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+                        "Styles": {
+                            "SubstatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
+                        },
+						"OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDetailsNav.js",
+						"PreserveIconStackSpacing": false
+					},
+					"Target": {
+						"EntitySet": "MyWorkOrderHeaders",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=OrderMobileStatus_Nav&$filter=OrderMobileStatus_Nav/MobileStatus eq 'REVIEW' or OrderMobileStatus_Nav/MobileStatus eq 'REJECTED'&$top=4"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/SupervisorSectionCountForWO.js",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/SupervisorWorkOrdersListView.js"
+					},
+					"DataSubscriptions": [
+						"UserRoles",
+						"OrderActivityTypes", 
+						"MyWorkOrderHeaders", 
+						"PMMobileStatuses"
+					]
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Visible": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/IsSupervisorSectionVisibleForOperations.js",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)" 
+					},
+					"_Name": "SupervisorSectionForOperations",
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/SupervisorSectionTitleForOperations.js"
+					},
+					"EmptySection": {
+						"Caption": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/SupervisorEmptySectionTitleForOperations.js"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": {
+						"Title": "#Property:OperationShortText",
+						"Subhead": "{OrderId} - {OperationNo}",
+						"AccessoryType": "disclosureIndicator",
+						"Footnote": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderDueDate.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewFormat.js",
+                        "Styles": {
+                            "SubstatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
+                        },
+						"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsNav.js",
+						"PreserveIconStackSpacing": false
+					},
+					"Target": {
+						"EntitySet": "MyWorkOrderOperations",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=WOHeader,OperationMobileStatus_Nav&$filter=OperationMobileStatus_Nav/MobileStatus eq 'REVIEW' or OperationMobileStatus_Nav/MobileStatus eq 'REJECTED'&$top=4"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/SupervisorSectionCountForOperations.js",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Rules/Supervisor/SupervisorRole/SupervisorOperationsListView.js"
+					},
+					"DataSubscriptions": [
+						"UserRoles",
+						"OrderActivityTypes", 
+						"MyWorkOrderOperations", 
+						"PMMobileStatuses"
+					]
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Visible": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/IsTechnicianSectionVisibleForWO.js",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)" 
+					},
+					"_Name": "TechnicianSectionForWorkOrders",
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/TechnicianSectionTitleForWO.js"
+					},
+					"EmptySection": {
+						"Caption": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/TechnicianEmptySectionTitleForWO.js"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": {
+						"Title": "#Property:OrderDescription",
+						"Subhead": "{OrderId}",
+						"AccessoryType": "disclosureIndicator",
+						"Footnote": "/SAPAssetManager/Rules/DateTime/DueDate.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+                        "Styles": {
+                            "SubstatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
+                        },
+						"OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderDetailsNav.js",
+						"PreserveIconStackSpacing": false
+					},
+					"Target": {
+						"EntitySet": "MyWorkOrderHeaders",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=OrderMobileStatus_Nav&$filter=OrderMobileStatus_Nav/MobileStatus eq 'REVIEW' or OrderMobileStatus_Nav/MobileStatus eq 'REJECTED'&$top=4"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/TechnicianSectionCountForWO.js",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/TechnicianWorkOrdersListView.js"
+					},
+					"DataSubscriptions": [
+						"UserRoles",
+						"OrderActivityTypes", 
+						"MyWorkOrderHeaders", 
+						"PMMobileStatuses"
+					]
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Visible": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/IsTechnicianSectionVisibleForOperations.js",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)" 
+					},
+					"_Name": "TechnicianSectionForOperations",
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/TechnicianSectionTitleForOperations.js"
+					},
+					"EmptySection": {
+						"Caption": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/TechnicianEmptySectionTitleForOperations.js"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": {
+						"Title": "#Property:OperationShortText",
+						"Subhead": "{OrderId} - {OperationNo}",
+						"AccessoryType": "disclosureIndicator",
+						"Footnote": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderDueDate.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationsListViewFormat.js",
+                        "Styles": {
+                            "SubstatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
+                        },
+						"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/Details/WorkOrderOperationDetailsNav.js",
+						"PreserveIconStackSpacing": false
+					},
+					"Target": {
+						"EntitySet": "MyWorkOrderOperations",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions":"$expand=WOHeader,OperationMobileStatus_Nav&$filter=OperationMobileStatus_Nav/MobileStatus eq 'REVIEW' or OperationMobileStatus_Nav/MobileStatus eq 'REJECTED'&$top=4"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/TechnicianSectionCountForOperations.js",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Rules/Supervisor/TechnicianRole/TechnicianOperationsListView.js"
+					},
+					"DataSubscriptions": [
+						"UserRoles",
+						"OrderActivityTypes", 
+						"MyWorkOrderOperations", 
+						"PMMobileStatuses"
+					]
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)" 
+					},
+					"_Name": "HighPriorityOrdersSection",
+					"Header": {
+						"Caption": "$(L,high_workorders)"
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_high_text)"
+					},
+					"MaxItemCount": 4,
+					"ObjectCell": {
+						"Title": "#Property:OrderDescription",
+						"Subhead": "{OrderId}",
+                        "Footnote": "/SAPAssetManager/Rules/DateTime/DueDate.js",
+                        "SubstatusText": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersListViewFormat.js",
+                        "Styles": {
+                            "SubstatusText": "/SAPAssetManager/Rules/Supervisor/Reject/RejectedStatusStyle.js"
+                        },
+						"AccessoryType": "disclosureIndicator",
+						"OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrderHighPriorityDetailsNav.js",
+						"PreserveIconStackSpacing": false
+					},
+					"Target": {
+						"EntitySet": "MyWorkOrderHeaders",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "$expand=OrderMobileStatus_Nav&$filter=Priority eq '1' or  Priority eq '2'&$orderby=Priority,DueDate,OrderId"
+					},
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/WorkOrders/WorkOrderHighPriorityOrdersCount.js",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Rules/WorkOrders/ListView/WorkOrdersHighPriorityListView.js"
+					},
+					"DataSubscriptions": [
+						"MyWorkOrderHeaders"
+					]
+				},
+				{
+					"_Type": "Section.Type.ObjectCollection",
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)" 
+					},
+					"_Name": "TimeCaptureSection",
+					"Header": {
+						"Caption": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionTitle.js"
+					},
+					"ObjectCells": [
+						{
+							"ObjectCell": {
+								"PreserveIconStackSpacing": false,
+								"Icons": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionTodayIcons.js",
+								"AccessoryType": "disclosureIndicator",
+								"Title": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionDateTitle.js",
+								"Subhead": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionTodayHours.js",
+								"OnPress": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/OnPressTimeCaptureSectionToday.js",
+								"Styles": {
+									"Subhead": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/SubHeadFontColorToday.js"
+								}
+							}
+						},
+						{
+							"ObjectCell": {
+								"PreserveIconStackSpacing": false,
+								"Icons": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionYesterdayIcons.js",
+								"AccessoryType": "disclosureIndicator",
+								"Title": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionYesterdayTitle.js",
+								"Subhead": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionYesterdayHours.js",
+								"OnPress": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/OnPressTimeCaptureSectionTomorrow.js",
+								"Styles": {
+									"Subhead": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/SubHeadFontColorYesterday.js"
+								}
+							}
+						}
+					],
+					"Footer": {
+						"Caption": "$(L,see_all)",
+						"AccessoryType": "disclosureIndicator",
+						"AttributeLabel": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/TimeCaptureSectionCount.js",
+						"FooterStyle": "attribute",
+						"OnPress": "/SAPAssetManager/Rules/OverviewPage/TimeCaptureSection/OnPressTimeCaptureSectionSeeAll.js"
+					},
+					"DataSubscriptions": [
+						"Confirmations",
+						"CatsTimesheets",
+						"ConfirmationOverviewRows",
+						"CatsTimesheetOverviewRows"
+					]
+				},{
+					"SimplePropertyCells": [
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "$(L,'suboperations')",
+								"OnPress": "/SAPAssetManager/Rules/WorkOrders/SubOperations/SubOperationsListViewNav.js",
+								"Value": "/SAPAssetManager/Rules/SubOperations/SubOperationCount.js",
+								"Visible": "/SAPAssetManager/Rules/WorkOrders/SubOperations/IsSubOperationLevelAssigmentType.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "$(L,'operations')",
+								"OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/OperationsListViewNav.js",
+								"Value": "/SAPAssetManager/Rules/Operations/OperationCount.js",
+								"Visible": "/SAPAssetManager/Rules/WorkOrders/Operations/IsOperationLevelAssigmentType.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "$(L,workorders)",
+								"Value": "/SAPAssetManager/Rules/WorkOrders/WorkOrdersCount.js",
+								"OnPress": "/SAPAssetManager/Rules/WorkOrders/WorkOrdersListViewNav.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "$(L,notifications)",
+								"Value": "/SAPAssetManager/Rules/Notifications/NotificationsTotalCount.js",
+								"OnPress": "/SAPAssetManager/Actions/Notifications/NotificationsListViewNav.action"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "$(L,equipment)",
+								"Value": "/SAPAssetManager/Rules/Equipment/EquipmentCount.js",
+								"OnPress": "/SAPAssetManager/Rules/Equipment/EquipmentListViewNav.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "$(L,functional_locations)",
+								"Value": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationCount.js",
+								"OnPress": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListViewNav.js"
+							}
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "$(L,reminders)",
+								"Value": "/SAPAssetManager/Rules/OverviewPage/OverviewPageRemindersCount.js",
+								"OnPress": "/SAPAssetManager/Actions/Reminders/RemindersListViewNav.action"
+							},
+							"DataSubscriptions": [
+								"UserPreferences"
+							]
+						},
+						{
+							"SimplePropertyCell": {
+								"AccessoryType": "disclosureIndicator",
+								"KeyName": "$(L,checklists)",
+								"Value": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/InspectionLotCount.js",
+								"OnPress": "/SAPAssetManager/Actions/WorkOrders/InspectionLot/InspectionLotListViewNav.action",
+								"Visible": "/SAPAssetManager/Rules/WorkOrders/InspectionLot/IsInspectionLotEnabled.js"
+							}
+						}
+					],
+					"Layout": {
+						"NumberOfColumns": 2,
+						"MinimumInteritemSpacing": "$(PLT,66,0)" 
+					},
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"DataSubscriptions": "/SAPAssetManager/Rules/Common/DataSubscriptions.js"
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "OverviewPage"
+}

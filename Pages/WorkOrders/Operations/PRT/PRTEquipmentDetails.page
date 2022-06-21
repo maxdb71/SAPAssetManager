@@ -1,0 +1,50 @@
+{
+	"_Type": "Page",
+	"_Name": "PRTEquipmentDetailsPage",
+	"Caption": "/SAPAssetManager/Rules/Operations/PRT/PRTEquipmentDetailsCaption.js",
+	"ActionBar": {
+        "Items": [
+            {
+                "Position": "right",
+                "SystemItem": "Edit",
+                "OnPress": "/SAPAssetManager/Rules/WorkOrders/Operations/PRT/PRTEquipmentUpdateNav.js"
+            }
+        ]
+    },
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "PRTEquipmentDetailsSectionedTable",
+			"Sections": [
+				{
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "PRTEquipmentDetailsSection",
+					"Header": {
+						"Caption": "$(L,equipment_details)"
+					},
+					"KeyAndValues": [
+						{
+							"KeyName": "$(L,description)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTDescriptionValue.js"
+						},
+						{
+							"KeyName": "$(L,usage)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTUsageValue.js"
+						},
+						{
+							"KeyName": "$(L,control_key)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTPlantValue.js"
+						},
+						{
+							"KeyName": "$(L,item_number)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTItemValue.js"
+						},{
+							"KeyName": "$(L,serial_number)",
+							"Value": "/SAPAssetManager/Rules/Operations/PRT/PRTSerialNumberValue.js"
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,69 @@
+{
+	"Caption": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationCaption.js",
+	"_Type": "Page",
+	"_Name": "FunctionalLocationListViewPage",
+	"ActionBar":
+	{
+		"Items":
+		[
+		{
+			"Position": "right",
+			"Icon":"$(PLT,/SAPAssetManager/Images/sync.png,/SAPAssetManager/Images/sync.android.png)",
+			"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+		},
+		{
+			"Position": "right",
+			"Icon": "$(PLT,'','res://filter')",
+			"Text": "$(L,filter)",
+			"OnPress": "/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationFilter.action"
+		}]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Search": {
+						"Enabled": true,
+						"Delay": 500,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)",
+						"BarcodeScanner": true
+					},
+					"EmptySection": {
+						"Caption": "$(L,no_functional_location_available)"
+					},
+					"Header": {
+		 				"UseTopPadding": false
+    				},
+					"ObjectCell": {
+						"Icons": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListViewIconImage.js",
+						"Title": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListFormat.js", 
+						"Footnote": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListFormat.js",
+						"Subhead": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationListFormat.js",
+						"SubstatusText": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationStatus.js",
+						"Description": "{FuncLocDesc} {FuncLocDesc}",
+                        "AccessoryType": "disclosureIndicator",
+                        "OnPress":"/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationDetailsNav.action",
+						"ContextMenu": {
+							"PerformFirstActionWithFullSwipe": true,
+							"Items":"/SAPAssetManager/Rules/ContextMenuTable.js",
+							"LeadingItems": "/SAPAssetManager/Rules/ContextMenuLeadingItems.js",
+							"TrailingItems": "/SAPAssetManager/Rules/ContextMenuTrailingItems.js"
+						}
+					},
+					"Target": {
+						"EntitySet": "MyFunctionalLocations",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationQueryOptions.js"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"_Name" : "FunctionalLocationListView"
+				}
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"_Name" : "SectionedTable"
+		}
+	],
+	"DataSubscriptions": ["MyFuncLocDocuments"]
+
+}

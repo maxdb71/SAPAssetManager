@@ -1,0 +1,34 @@
+{
+  "PopoverItems":
+	[{
+		"Title": "$(L,add_operation)",
+		"OnPress" : "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/WorkOrderOperationCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+	},
+	{
+		"Title" : "$(L,add_part)",
+		"OnPress" : "/SAPAssetManager/Rules/Parts/CreateUpdate/PartCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+	},
+	{
+		"Title" : "/SAPAssetManager/Rules/Notes/NotePopoverSelectionText.js",
+		"OnPress" : "/SAPAssetManager/Rules/Notes/NoteCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+	},
+	{
+		"Title": "$(L,add_notification)",
+		"OnPress" : "/SAPAssetManager/Rules/WorkOrders/WorkOrderNotificationCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/Notifications/EnableNotificationCreate.js"
+	},
+	{
+		"Title" : "$(L,add_reminder)",
+		"OnPress" : "/SAPAssetManager/Rules/Reminders/ReminderCreateNav.js",
+		"Visible": "/SAPAssetManager/Rules/UserAuthorizations/WorkOrders/EnableWorkOrderEdit.js"
+	},
+	{
+		"Title": "$(L,take_readings)",
+		"OnPress": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointsDataEntryNavWrapper.js",
+		"Visible":"/SAPAssetManager/Rules/Measurements/Points/MeasuringPointFDCIsVisible.js"
+	}],
+	"_Type": "Action.Type.PopoverMenu"
+}

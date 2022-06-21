@@ -1,0 +1,54 @@
+{
+	"Caption": "$(L,time_sheets)",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/sync.png,/SAPAssetManager/Images/sync.android.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+			},
+			{
+				"Position": "right",
+				"SystemItem": "Add",
+                "OnPress": "/SAPAssetManager/Rules/TimeSheets/Entry/CreateUpdate/TimeSheetEntryCreateNav.js",
+				"Visible": "/SAPAssetManager/Rules/UserAuthorizations/TimeSheets/EnableTimeSheetCreate.js"
+
+			}
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"Header": {
+						"UseTopPadding": false
+					},
+					"ObjectCell": {
+						"PreserveIconStackSpacing": true,
+						"Icons": "/SAPAssetManager/Rules/TimeSheets/TimeSheetListIconImages.js",
+						"Title": "/SAPAssetManager/Rules/TimeSheets/Entry/ListView/TimeSheetEntryListViewFormat.js",
+						"Subhead": "/SAPAssetManager/Rules/TimeSheets/Entry/Details/TimeSheetEntryDetailsTotalHoursLabel.js",
+						"AccessoryType": "disclosureIndicator",
+						"OnPress": "/SAPAssetManager/Actions/TimeSheets/TimeSheetEntryDetailsNav.action",
+						"Styles": {
+							"Subhead": "/SAPAssetManager/Rules/TimeSheets/Styles/TimeSheetEntryEntriesListViewSubstatusTextStyle.js"
+						}
+					},
+					"Target": {
+						"EntitySet": "CatsTimesheetOverviewRows",
+						"Service": "/SAPAssetManager/Services/AssetManager.service",
+						"QueryOptions": "/SAPAssetManager/Rules/TimeSheets/Entry/ListView/TimeSheetEntriesListQueryOptions.js"
+					},
+					"_Type": "Section.Type.ObjectTable",
+					"_Name": "TimesheetHeaders"
+				}
+			],
+			"_Type": "Control.Type.SectionedTable",
+			"DataSubscriptions": ["CatsTimesheets","CatsTimesheetOverviewRows"],
+			"_Name": "TimesheetOverviewListSection"
+		}
+	],
+	"_Type": "Page",
+	"_Name": "TimeSheetsListViewPage",
+	"OnLoaded": "/SAPAssetManager/Rules/TimeSheets/Entry/ListView/TimeSheetEntriesListViewOnPageLoad.js"
+}

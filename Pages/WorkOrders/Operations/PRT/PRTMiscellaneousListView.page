@@ -1,0 +1,31 @@
+{
+    "Caption": "/SAPAssetManager/Rules/Operations/PRT/PRTMiscellaneousListViewCaption.js",
+    "Controls": [
+        {
+            "Sections": [
+                {
+                    "Header": {
+		 		        "UseTopPadding": false
+    		        },
+                    "ObjectCell": {
+                        "AccessoryType": "disclosureIndicator",
+                        "Title": "{Description}",
+                        "OnPress": "/SAPAssetManager/Actions/WorkOrders/Operations/PRT/PRTMiscellaneousDetailsViewNav.action",
+                        "PreserveIconStackSpacing": false,
+                        "Subhead": "{PRTTool}"
+                    },
+                    "Target": {
+                        "EntitySet": "{{#Property:@odata.readLink}}/Tools",
+                        "Service": "/SAPAssetManager/Services/AssetManager.service",
+                        "QueryOptions": "$filter=(PRTCategory eq 'O')"
+                    },
+                    "_Type": "Section.Type.ObjectTable",
+                    "_Name": "Miscellaneous"
+                }
+            ],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "MiscellaneousListViewPage"
+}

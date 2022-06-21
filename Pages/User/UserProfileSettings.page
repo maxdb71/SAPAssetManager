@@ -1,0 +1,158 @@
+{
+    "Caption" : "$(L,profile)",
+    "ActionBar": {
+        "Items": [
+            {
+                "Position": "left",
+                "Text": "$(L,close)",
+                "SystemItem": "/SAPAssetManager/Rules/UserPreferences/UserProfileCloseIcon.js",
+                "OnPress": "/SAPAssetManager/Actions/Page/CancelPage.action"
+            }
+        ]
+    },
+    "Controls": [
+    {
+      "Sections": [
+        {
+          "SimplePropertyCells": [
+            {
+              "SimplePropertyCell": {
+                "AccessoryType": "disclosureIndicator",
+                "KeyName" : "$(L,passcode)",
+                "IsEditable": true,
+                "OnPress": "/SAPAssetManager/Rules/UserPreferences/ChangeUserPasscode.js"
+              }
+            }
+          ],
+          "Layout": {
+            "NumberOfColumns": 1,
+            "MinimumInteritemSpacing": "$(PLT,66,0)" 
+          },
+          "_Type" : "Section.Type.SimplePropertyCollection"
+        },
+        {
+        "SimplePropertyCells": [
+            {
+              "SimplePropertyCell": {
+                "AccessoryType": "disclosureIndicator",
+                "KeyName" : "$(L,support)",
+                "OnPress": "/SAPAssetManager/Rules/UserPreferences/UserSupportNav.js"
+              }
+            }
+          ],
+          "Layout": {
+            "NumberOfColumns": 1,
+            "MinimumInteritemSpacing": "$(PLT,66,0)" 
+          },
+          "_Type" : "Section.Type.SimplePropertyCollection"
+        },
+        {
+          "SimplePropertyCells": [
+            {
+              "SimplePropertyCell": {
+                "KeyName" : "$(L,privacy_policy)",
+                "OnPress": "/SAPAssetManager/Rules/PrivacyPolicy/PrivacyPolicyLink.js"
+              }
+            }
+          ],
+          "Layout": {
+            "NumberOfColumns": 1,
+            "MinimumInteritemSpacing": "$(PLT,66,0)" 
+          },
+          "_Type" : "Section.Type.SimplePropertyCollection"
+        },
+        {
+           "Header": {
+             "UseTopPadding": false
+           },
+          "Visible":"/SAPAssetManager/Rules/DigitalSignature/DeviceRegistrationIsVisible.js",
+          "Buttons": [
+            {
+              "Title" : "$(L,register_digital_signature)",
+              "OnPress" :"/SAPAssetManager/Rules/DigitalSignature/TOTPDeviceRegistration.js",
+              "TextAlignment" : "center"
+            }
+          ],
+          "_Type": "Section.Type.ButtonTable"
+        },
+        {
+           "Header": {
+             "UseTopPadding": false
+           },
+          "Visible":"/SAPAssetManager/Rules/DigitalSignature/DeviceDeRegistrationIsVisible.js",
+          "Buttons": [
+            {
+              "Title" : "$(L,unregister_device)",
+              "OnPress" :"/SAPAssetManager/Rules/DigitalSignature/UnRegisterDevice.js",
+              "TextAlignment" : "center"
+            }
+          ],
+          "_Type": "Section.Type.ButtonTable"
+        },
+        {
+        "Footer": {
+            "Caption": "/SAPAssetManager/Rules/Sync/LastSyncCaption.js",
+            "FooterStyle": "help",
+            "UseBottomPadding": false
+            }, 
+          "Buttons": [
+            {
+              "Title" : "$(L,sync)",
+              "Style": "FormCellButton",
+              "OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js",
+              "TextAlignment" : "center"
+            }
+          ],
+          "_Type": "Section.Type.ButtonTable"
+        },
+        {
+          "Header": {
+            "UseTopPadding": false
+          },
+          "Buttons": [
+            {
+              "Title" : "$(L,check_app_update)",
+              "Style": "FormCellButton",
+              "OnPress" :"/SAPAssetManager/Actions/Common/PerformAppUpdateCheck.action",
+              "TextAlignment" : "center"
+            }
+          ],
+          "_Type": "Section.Type.ButtonTable"
+        },
+        {
+          "Header": {
+            "UseTopPadding": false
+          },
+          "Buttons": [
+          {
+            "Title" : "$(L,logout)",
+            "Style": "FormCellButton",
+            "OnPress" : "/SAPAssetManager/Rules/Common/LogOutAlertAction.js",
+            "Visible": "/SAPAssetManager/Rules/UserProfile/IsLogOutVisible.js",
+            "TextAlignment" : "center"
+          }
+          ],
+          "_Type": "Section.Type.ButtonTable"
+        },
+        {
+          "Header": {
+            "UseTopPadding": false
+          },
+          "Buttons": [
+          {
+            "Title" : "$(L,reset)",
+            "Style": "/SAPAssetManager/Rules/Common/ResetAlertStyle.js",
+            "OnPress" : "/SAPAssetManager/Rules/Common/ResetAlertAction.js",
+            "TextAlignment" : "center"
+          }
+          ],
+          "_Type": "Section.Type.ButtonTable"
+        }
+      ],
+      "_Type": "Control.Type.SectionedTable",
+      "_Name": "SectionedTable"
+    }
+  ],
+  "_Type": "Page",
+  "_Name": "UserProfileSettings"
+}

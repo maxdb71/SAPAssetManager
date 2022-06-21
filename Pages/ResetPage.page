@@ -1,0 +1,14 @@
+{
+	"Caption": "Resetting Application",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/sync.png,/SAPAssetManager/Images/sync.android.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+			}
+		]
+	},
+	"_Name": "ResetPage",
+	"_Type": "Page"
+}

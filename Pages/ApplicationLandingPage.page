@@ -1,0 +1,14 @@
+{
+	"Caption": "$(L,app_display_name)",
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/sync.png,/SAPAssetManager/Images/sync.android.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+			}
+		]
+	},
+	"_Name": "ApplicationLandingPage",
+	"_Type": "Page"
+}

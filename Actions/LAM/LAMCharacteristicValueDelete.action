@@ -1,0 +1,15 @@
+{
+	"Target":
+	{
+		"EntitySet": "LAMCharacteristicValues",
+        "Service": "/SAPAssetManager/Services/AssetManager.service",
+        "ReadLink": "{@odata.id}"
+	},
+	"Headers":
+	{
+        "OfflineOData.TransactionID": "#Property:LAMInternCounter"
+	},
+	"_Type": "Action.Type.ODataService.DeleteEntity",
+	"OnSuccess": "/SAPAssetManager/Actions/CreateUpdateDelete/DeleteEntitySuccessMessage.action",
+    "OnFailure": "/SAPAssetManager/Actions/CreateUpdateDelete/DeleteEntityFailureMessage.action"
+}

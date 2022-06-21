@@ -1,0 +1,96 @@
+{
+    "Caption": "$(L,measuring_point_reading_history)",
+    "Controls": [
+        {
+            "Sections":
+            [{
+                "Search":
+                {
+                    "Enabled": true,
+                    "Delay": 500,
+                    "MinimumCharacterThreshold": 3,
+                    "Placeholder": "$(L,search_reading)"
+                },
+                "Header":
+                {
+                    "Grid":
+                    {
+                        "Items":
+                        [
+                        {
+                            "Text": " ",
+                            "Style": "GridTableHeaderText"
+                        },
+                        {
+                            "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointValueAndReadingDifferenceCaption.js",
+                            "Style": "GridTableHeaderText"
+                        },
+                        {
+                            "Text": "$(L, valuation_code)",
+                            "Style": "GridTableHeaderText"
+                        },
+                        {
+                            "Text": "$(L, date)",
+                            "Style": "GridTableHeaderText"
+                        },
+                        {
+                            "Text": "$(L, time)",
+                            "Style": "GridTableHeaderText"
+                        }]
+                    }
+                },
+                "Row":
+                {
+                    "Layout":
+                    {
+                        "ColumnWidthPercentage": [
+                            0.02,
+                            0.3,
+                            0.2,
+                            0.2,
+                            -1]
+                    },
+                    "Items":
+                    [
+                    {
+                        "Image": "/SAPAssetManager/Rules/Common/SyncIconOnGrid.js",
+                        "BindTo": "firstIcon"
+                    },
+                    {
+                        "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointReadingValueAndReadingDifference.js",
+                        "Style": "GridTableRowText",
+                        "BindTo": "headline"
+                    },
+                    {
+                        "Text": "/SAPAssetManager/Rules/Measurements/ValuationCode.js",
+                        "Style": "GridTableRowText",
+                        "BindTo": "subheadline"
+                    },
+                    {
+                        "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryReadingDate.js",
+                        "Style": "GridTableRowText",
+                        "BindTo": "footnote"
+                    },
+                    {
+                        "Text": "/SAPAssetManager/Rules/Measurements/Points/MeasuringPointHistoryReadingTime.js",
+                        "Style": "GridTableRowText",
+                        "BindTo": "status"
+                    }],
+                    "AccessoryType": "disclosureIndicator",
+                    "OnPress": "/SAPAssetManager/Actions/Measurements/MeasurementDocumentDetailsNav.action"
+                },
+                "Target":
+                {
+                    "EntitySet": "MeasurementDocuments",
+                    "QueryOptions": "$select=Point,MeasurementDocNum,CodeGroup,ReadingDate,ReadingTime,HasReadingValue,ReadingValue,UOM,ValuationCode,CodeShortText,ShortText,ReadBy,IsCounterReading,CounterReadingDifference,MeasuringPoint/PointDesc,MeasuringPoint/CharName,MeasuringPoint/CharDescription,MeasuringPoint/IsCounter,MeasuringPoint/UoM,MeasuringPoint/CodeGroup,MeasuringPoint/CatalogType,MeasuringPoint/CounterOverflow,MeasuringPoint/IsCounter,MeasuringPoint/IsCounterOverflow,MeasuringPoint/IsReverse,MeasuringPoint/IsLowerRange,MeasuringPoint/IsUpperRange,MeasuringPoint/IsCodeSufficient,MeasuringPoint/LowerRange,MeasuringPoint/UpperRange,MeasuringPoint/Decimal&$expand=MeasuringPoint&$filter=Point eq '{{#Property:Point}}'&$orderby=ReadingTimestamp desc",
+                    "Service": "/SAPAssetManager/Services/AssetManager.service"
+                },
+                "_Type": "Section.Type.GridTable",
+                "_Name": "MeasurementDocumentsList"
+            }],
+            "_Type": "Control.Type.SectionedTable"
+        }
+    ],
+    "_Type": "Page",
+    "_Name": "MeasuringPointHistoryListViewPage"
+}

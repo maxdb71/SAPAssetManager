@@ -1,0 +1,55 @@
+{
+	"Caption": "$(L,outbound_list_title)",
+    "ActionBar": {
+		"Items": [
+			{
+				"Position": "right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/sync.png,/SAPAssetManager/Images/sync.android.png)",
+				"OnPress": "/SAPAssetManager/Rules/ApplicationEvents/ApplicationOnSync.js"
+			},			
+            {
+                "Position": "right",
+                "Icon": "$(PLT,'','res://filter')",
+                "Text": "$(L,filter)",
+                "OnPress": "/SAPAssetManager/Actions/Inventory/Outbound/OutboundListFilter.action"
+            }
+		]
+	},
+	"Controls": [
+		{
+			"Sections": [
+				{
+					"ObjectCell": {
+						"AccessoryType": "disclosureIndicator",
+						"DetailImageIsCircular": false,
+						"OnPress": "/SAPAssetManager/Rules/Inventory/Outbound/OutboundNavigateToObject.js",
+						"PreserveIconStackSpacing": false,
+						"StatusText": "/SAPAssetManager/Rules/Inventory/Outbound/GetOutboundDocumentStatusText.js",
+						"Subhead": "/SAPAssetManager/Rules/Inventory/Outbound/GetOutboundDocumentRecipientText.js",
+						"Footnote": "/SAPAssetManager/Rules/Inventory/Outbound/GetOutboundDocumentTypeText.js",
+						"SubstatusText": "/SAPAssetManager/Rules/Inventory/Outbound/GetOutboundDocumentDateText.js",
+						"Title": "{ObjectId}"
+					},
+					"Search": {
+						"BarcodeScanner": true,
+						"Enabled": true,
+						"MinimumCharacterThreshold": 3,
+						"Placeholder": "$(L,search)"
+					},
+					"Target": {
+						"EntitySet": "MyInventoryObjects",
+						"QueryOptions":  "/SAPAssetManager/Rules/Inventory/Outbound/GetOutboundListQuery.js",
+						"Service": "/SAPAssetManager/Services/AssetManager.service"
+					},
+					"_Name": "SectionObjectTable0",
+					"_Type": "Section.Type.ObjectTable"
+				}
+			],
+			"_Name": "SectionedTable",
+			"_Type": "Control.Type.SectionedTable"
+		}
+	],
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/Outbound/OutboundListOnReturning.js",
+	"_Name": "OutboundListPage",
+	"_Type": "Page"
+}

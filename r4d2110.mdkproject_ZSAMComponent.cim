@@ -1,0 +1,262 @@
+{
+	"ProjectName": "r4d2110.mdkproject",
+	"ApplicationName": "ZSAMComponent",
+	"IntegrationPoints": [
+		{
+			"Source": "/ZSAMComponent/Pages/BusinessPartners/BusinessPartnerDetails.page",
+			"Target": "/SAPAssetManager/Pages/BusinessPartners/BusinessPartnerDetails.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Notifications/NotificationItemDetails.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemDetails.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/FunctionalLocation/FunctionalLocationDetails.page",
+			"Target": "/SAPAssetManager/Pages/FunctionalLocation/FunctionalLocationDetails.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Notifications/NotificationCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationCreateUpdate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/Notifications/CreateUpdate/NotificationCreate.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/CreateUpdate/NotificationCreate.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/NotificationCreateUpdateValidation.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateValidation.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/Notifications/Item/NotificationItemCreateUpdateRequired.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/Item/NotificationItemCreateUpdateRequired.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/Notifications/Item/NotificationItemCreate.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/Item/NotificationItemCreate.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Notifications/NotificationItemCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationItemCreateUpdate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/CreateUpdate/NotificationCreateChangeSetNav.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateChangeSetNav.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/Details/NotificationDetailsNavQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Details/NotificationDetailsNavQueryOptions.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnPageLoad.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnPageLoad.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/CreateUpdate/NotificationCreateUpdatePickerItems.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdatePickerItems.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/Notifications/CreateUpdate/NotificationUpdate.action",
+			"Target": "/SAPAssetManager/Actions/Notifications/CreateUpdate/NotificationUpdate.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/FunctionalLocation/FunctionalLocationQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/FunctionalLocation/FunctionalLocationQueryOptions.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/EquipmentQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/EquipmentQueryOptions.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Parts/PartIssueCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartIssueCreateUpdate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/i18n/i18n_en.properties",
+			"Target": "/SAPAssetManager/i18n/i18n_en.properties"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Parts/PartDetails.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartDetails.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/NotificationLibrary.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/NotificationLibrary.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Globals/Documents/DocumentDescriptionMaximumLength.global",
+			"Target": "/SAPAssetManager/Globals/Documents/DocumentDescriptionMaximumLength.global"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/WorkOrders/Operations/WorkOrderOperationDetails.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationDetails.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/WorkOrders/WorkOrderDetails.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrderDetails.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/Confirmations/ConfirmationCreate.action",
+			"Target": "/SAPAssetManager/Actions/Confirmations/ConfirmationCreate.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/Parts/PartIssueCreateLineItem.action",
+			"Target": "/SAPAssetManager/Actions/Parts/PartIssueCreateLineItem.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Parts/PartLibrary.js",
+			"Target": "/SAPAssetManager/Rules/Parts/PartLibrary.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/WorkOrders/WorkOrderCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrderCreateUpdate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/WorkOrders/CreateUpdate/WorkOrderCreate.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/CreateUpdate/WorkOrderCreate.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/WorkOrders/WorkOrderLibrary.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/WorkOrderLibrary.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/WorkOrders/CreateUpdate/WorkOrderCreateFromNotificationNav.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/WorkOrderCreateFromNotificationNav.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/Equipment/EquipmentPopover.action",
+			"Target": "/SAPAssetManager/Actions/Equipment/EquipmentPopover.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/FunctionalLocation/FunctionalLocationPopover.action",
+			"Target": "/SAPAssetManager/Actions/FunctionalLocation/FunctionalLocationPopover.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/WorkOrders/WorkOrdersListView.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrdersListView.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Parts/StorageLocationOnValueChange.js",
+			"Target": "/SAPAssetManager/Rules/Parts/StorageLocationOnValueChange.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/WorkOrders/WorkOrderUpdate.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/WorkOrderUpdate.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Parts/PartCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartCreateUpdate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/Parts/PartCreate.action",
+			"Target": "/SAPAssetManager/Actions/Parts/PartCreate.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/WorkOrders/Operations/WorkOrderOperationCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/Operations/WorkOrderOperationCreateUpdate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/WorkOrders/Operations/WorkOrderOperationCreate.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/WorkOrderOperationCreate.action"
+		},
+				{
+			"Source": "/ZSAMComponent/Rules/WorkOrders/Operations/WorkOrderOperationLibrary.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/WorkOrderOperationLibrary.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/WorkOrders/Operations/WorkOrderOperationUpdate.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/Operations/WorkOrderOperationUpdate.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Actions/WorkOrders/CreateUpdate/WorkOrderCreateUpdateRequired.action",
+			"Target": "/SAPAssetManager/Actions/WorkOrders/CreateUpdate/WorkOrderCreateUpdateRequired.action"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/WorkOrders/CreateUpdate/WorkOrderCreateUpdateDefault.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/CreateUpdate/WorkOrderCreateUpdateDefault.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/WorkOrders/Operations/CreateUpdate/RequiredFields.js",
+			"Target": "/SAPAssetManager/Rules/WorkOrders/Operations/CreateUpdate/RequiredFields.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/WorkOrders/WorkOrderFilter.page",
+			"Target": "/SAPAssetManager/Pages/WorkOrders/WorkOrderFilter.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/OverviewPage/OverviewOnPageLoad.js",
+			"Target": "/SAPAssetManager/Rules/OverviewPage/OverviewOnPageLoad.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Confirmations/ConfirmationsCreateUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Confirmations/ConfirmationsCreateUpdate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/MobileStatus/NotificationsMobileStatusFilter.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/MobileStatus/NotificationsMobileStatusFilter.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Overview.page",
+			"Target": "/SAPAssetManager/Pages/Overview.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/User/UserProfileSettings.page",
+			"Target": "/SAPAssetManager/Pages/User/UserProfileSettings.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Parts/CreateUpdate/PlantPickerOnChange.js",
+			"Target": "/SAPAssetManager/Rules/Parts/CreateUpdate/PlantPickerOnChange.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Confirmations/WorkOrderConfirmationsForDate.page",
+			"Target": "/SAPAssetManager/Pages/Confirmations/WorkOrderConfirmationsForDate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Confirmations/ConfirmationDetails.page",
+			"Target": "/SAPAssetManager/Pages/Confirmations/ConfirmationDetails.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Confirmations/ConfirmationDurationFromTime.js",
+			"Target": "/SAPAssetManager/Rules/Confirmations/ConfirmationDurationFromTime.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Parts/CreateUpdate/UpdateOnlineQueryOptions.js",
+			"Target": "/SAPAssetManager/Rules/Parts/CreateUpdate/UpdateOnlineQueryOptions.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Parts/PartsIssueUpdate.page",
+			"Target": "/SAPAssetManager/Pages/Parts/PartsIssueUpdate.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnCommit.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateOnCommit.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/Item/CreateUpdate/NotificationItemCreateUpdateDamage.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Item/CreateUpdate/NotificationItemCreateUpdateDamage.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/Item/NotificationItemDamageGroupQuery.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/Item/NotificationItemDamageGroupQuery.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/CreateUpdate/RequiredFields.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/RequiredFields.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/FunctionalLocation/FunctionalLocationListView.page",
+			"Target": "/SAPAssetManager/Pages/FunctionalLocation/FunctionalLocationListView.page"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/CreateUpdate/NotificationLinks.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationLinks.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js",
+			"Target": "/SAPAssetManager/Rules/Notifications/CreateUpdate/NotificationCreateUpdateTypeOnValueChange.js"
+		},
+		{
+			"Source": "/ZSAMComponent/Pages/Notifications/NotificationDetails.page",
+			"Target": "/SAPAssetManager/Pages/Notifications/NotificationDetails.page"
+		}
+	]
+}

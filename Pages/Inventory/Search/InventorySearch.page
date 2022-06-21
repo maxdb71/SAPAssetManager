@@ -1,0 +1,79 @@
+{
+	"ActionBar": {
+		"Items": [
+			{
+				"Position": "right",
+				"Icon":"$(PLT,/SAPAssetManager/Images/fetch.png,/SAPAssetManager/Images/fetch.android.png)",
+				"OnPress": "/SAPAssetManager/Actions/Inventory/Fetch/FetchDocuments.action"
+			},
+            {
+                "Position": "right",
+                "Icon": "$(PLT,'','res://filter')",
+                "Text": "$(L,filter)",
+                "OnPress": "/SAPAssetManager/Actions/Inventory/Search/InventorySearchFilter.action"
+            }
+		]
+	},
+    "Controls":
+	[{
+		"Sections":
+		[{
+			"Search":
+			{
+				"Enabled" : true,
+				"Delay": 500,
+				"MinimumCharacterThreshold": 3,
+				"Placeholder": "$(L,search)",
+				"BarcodeScanner": true
+			},
+			"Header": {
+		 		"UseTopPadding": false
+			},
+			"EmptySection": {
+                "Caption": "$(L,no_im_documents_available)",
+				"FooterVisible": false
+            },
+			"ObjectCell": {
+				"PreserveIconStackSpacing": true,
+				"AccessoryType": "disclosureIndicator",
+                "DetailImageIsCircular": false,
+				"Title": "{ObjectId}",
+                "Footnote": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentTypeText.js",
+                "StatusText": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentStatusText.js",
+                "Subhead": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentVendorText.js",
+                "SubstatusText": "/SAPAssetManager/Rules/Inventory/Inbound/GetInboundDocumentDateText.js",
+				"OnPress": "/SAPAssetManager/Rules/OverviewPage/OverviewNavigateToObject.js"
+			},
+			"Target": {
+				"EntitySet": "MyInventoryObjects",
+				"QueryOptions": "/SAPAssetManager/Rules/Inventory/Overview/GeneralDocumentsNoDataQueryOptions.js",
+				"Service": "/SAPAssetManager/Services/AssetManager.service"
+			},
+			"Visible": true,
+			"_Type" : "Section.Type.ObjectTable",
+			"_Name" : "DocumentsListSection"
+		},
+		{
+			"Layout":
+			{
+				"NumberOfColumns": 1
+			},
+			"KeyAndValues":
+			[{
+				"KeyName": "$(L, fetch)",
+				"Value": "$(L, no_im_documents_available)",
+				"OnPress": "/SAPAssetManager/Rules/Inventory/Search/SearchDocumentsOnlineNav.js",
+				"LinkColor": "#3678AF",
+				"Visible": false
+			}],
+			"_Type": "Section.Type.KeyValue",
+			"_Name": "EmptyDocumentSection"
+		}],
+		"_Type" : "Control.Type.SectionedTable",
+		"_Name" : "SectionedTable"
+	}],
+    "_Type": "Page",
+    "_Name": "InventorySearchPage",
+	"OnReturning": "/SAPAssetManager/Rules/Inventory/Fetch/OnReturningInventoryFetch.js",
+    "OnLoaded": "/SAPAssetManager/Rules/Inventory/Search/InventorySearchOnLoaded.js"
+}
